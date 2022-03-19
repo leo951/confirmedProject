@@ -1,18 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Text, View, Button, FlatList, Image} from 'react-native';
+import {Text, View, FlatList, Image} from 'react-native';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Home = ({navigation}) => {
+  const randomInt = getRandomInt(4);
   const [product, setProduct] = useState([]);
+  const [auction, setAuction] = useState([]);
+  const [twoProducts, setTwoProducts] = useState([]);
+  const videos = [
+    'https://brand.assets.adidas.com/video/upload/q_auto,vc_auto,c_scale,w_0.5/video/upload/ss22-ozworld-educate-hp-teaser-carousel-dual-animated-2-d_lsjete.mp4',
+  ];
+  const images = [
+    'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/frFR/Images/Dotcom_BBall_MA_812x480px_tcm196-509729.jpg',
+    'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/frFR/Images/ss22-velosamba-sustain-hp-tc-d_tcm196-801372.jpg',
+  ];
 
   useEffect(() => {
     axios({
       method: 'GET',
       url: 'https://v1-sneakers.p.rapidapi.com/v1/sneakers',
-      params: {limit: '10', brand: 'Adidas'},
+      params: {limit: '20', brand: 'Adidas'},
       headers: {
         'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
         'x-rapidapi-key': '0b4a3b6537mshd039b5f654ce9b1p195a55jsn249c4d2939a2',
@@ -20,13 +30,54 @@ const Home = ({navigation}) => {
     })
       .then(response => {
         setProduct(response.data.results);
-        console.log('Je suis product = ', product);
-        // console.log('Je suis response.data = ', response.data);
       })
       .catch(function (error) {
         console.error('Je suis error = ', error);
       });
   }, []);
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const getRandomValue = (listSend, listReceive, setListReceive, max) => {
+    console.log('Je suis dans getRandomValue');
+    if (max < listSend.length) {
+      for (let i = 1; i < max; i++) {
+        //Ajouter un element aleatoire de la liste d'envoie dans la liste de destination
+        //autant de fois que voulu via le paramettre max
+        var rand = getRandomInt(listSend.length);
+        console.log('Je suis rand = ', rand);
+        var rValue = listSend[rand];
+        setListReceive([...listReceive, rValue]);
+
+        //Supprime l'element ajouter dans la liste de destination dans la liste d'envoie
+        listSend.splice(rand, 1);
+        console.log(
+          'Je suis listSend après avoir supprimer 1 element = ',
+          listSend,
+        );
+      }
+    }
+  };
+
+  const addValueInTwoProducts = t => {
+    getRandomValue(product, twoProducts, setTwoProducts, t);
+  };
+
+  const addAuction = t => {
+    getRandomValue(product, auction, setAuction, t);
+  };
+
+  if (product.length > 0 && twoProducts.length < 6) {
+    //A lancer 3 fois
+    addValueInTwoProducts(2);
+  }
+  if (product.length > 0 && auction.length < randomInt) {
+    //A lancer entre 1 & 3 fois
+    console.log('Je suis randomInt == = ', randomInt);
+    addAuction(randomInt);
+  }
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -35,11 +86,14 @@ const Home = ({navigation}) => {
         keyExtractor={item => item.id}
         renderItem={({item}) => (
           <View>
-            <Image
-              style={{height: 150, width: 280}}
-              source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
-            />
-            <TextStyled>{item.title}</TextStyled>
+            <Button
+              onPress={() => navigation.navigate('Details', {id: item.id})}>
+              <Image
+                style={{height: 150, width: 280}}
+                source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
+              />
+              <TextStyled>{item.title}</TextStyled>
+            </Button>
           </View>
         )}></FlatList>
     </View>
@@ -47,6 +101,7 @@ const Home = ({navigation}) => {
 };
 
 const TextStyled = styled.Text``;
+const Button = styled.TouchableOpacity``;
 
 Home.propTypes = {};
 

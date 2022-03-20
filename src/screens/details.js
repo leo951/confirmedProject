@@ -9,8 +9,6 @@ const DetailsScreen = ({route}) => {
     params: {id},
   } = route;
 
-  console.log("Je suis id = ",id);
-
   useEffect(() => {
     axios({
       method: 'GET',
@@ -21,18 +19,12 @@ const DetailsScreen = ({route}) => {
       },
     })
       .then(response => {
-        // console.log('Je suis response = ', response.data.results);
         setSneakers(response.data.results)
-        console.log(sneakers);
       })
       .catch(error => {
         console.log('Je suis error dans le getById = ', error);
       });
   }, []);
-
-  if(sneakers){
-    console.log("Je suis sneakers = ",sneakers);
-  }
 
   return (
     <Container>

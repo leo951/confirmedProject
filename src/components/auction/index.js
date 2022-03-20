@@ -10,6 +10,8 @@ const Auction = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const counter = {hours: 1, minutes: 20, seconds: 40};
 
+  console.log("je suis les props dans auction === ",props);
+
   return (
     <View>
       <Image

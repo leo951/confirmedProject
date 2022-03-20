@@ -8,12 +8,9 @@ const TwoProducts = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
   const [products, setProducts] = useState([]);
-  console.log('Je suis props = ', props);
 
   useEffect(() => {
-    console.log('Je suis dans le useEffect');
     if (props.product1 && props.product2) {
-      console.log('Je suis dans le if du useEffect');
       setProducts([props.product1, props.product2]);
     }
   }, [props]);

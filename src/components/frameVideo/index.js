@@ -8,8 +8,6 @@ import styled from 'styled-components';
 const FrameVideo = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
-  console.log(`https:${props.videos[0].split(':')[1]}`);
-
   return (
     <View>
       {/* https://openbase.com/js/react-native-video-player/documentation#future-features */}

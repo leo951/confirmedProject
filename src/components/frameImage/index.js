@@ -7,8 +7,6 @@ import styled from 'styled-components';
 const FrameImage = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
-  console.log(`Je suis props = ${JSON.parse(JSON.stringify(props.image))}`);
-
   return (
     <View>
       <Image

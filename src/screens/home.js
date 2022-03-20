@@ -47,22 +47,16 @@ const Home = ({navigation}) => {
   }
 
   const getRandomValue = (listSend, listReceive, setListReceive, max) => {
-    console.log('Je suis dans getRandomValue');
     if (max < listSend.length) {
       for (let i = 1; i < max; i++) {
         //Ajouter un element aleatoire de la liste d'envoie dans la liste de destination
         //autant de fois que voulu via le paramettre max
         var rand = getRandomInt(listSend.length);
-        console.log('Je suis rand = ', rand);
         var rValue = listSend[rand];
         setListReceive([...listReceive, rValue]);
 
         //Supprime l'element ajouter dans la liste de destination dans la liste d'envoie
         listSend.splice(rand, 1);
-        console.log(
-          'Je suis listSend après avoir supprimer 1 element = ',
-          listSend,
-        );
       }
     }
   };
@@ -91,20 +85,20 @@ const Home = ({navigation}) => {
         <View>
           {/* Affichage des tirage au sort  */}
           <Text>
-            {randomInt == 0 && (
+            {auction[0] != undefined && (
               <Auction auction={auction[0]} price={'200, 00 €'} />
             )}
           </Text>
           <Text>
             {
-              (randomInt = 1 && (
+              (auction[1] != undefined && (
                 <Auction auction={auction[1]} price={'230, 00 €'} />
               ))
             }
           </Text>
           <Text>
             {
-              (randomInt = 2 && (
+              (auction[2] != undefined && (
                 <Auction auction={auction[2]} price={'250, 00 €'} />
               ))
             }

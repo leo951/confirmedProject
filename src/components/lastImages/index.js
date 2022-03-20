@@ -7,8 +7,6 @@ import styled from 'styled-components';
 const LastImages = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
-  console.log(`Je suis props dans lastImages = ${JSON.parse(JSON.stringify(props))}`);
-
   return (
     <View>
       <FlatList

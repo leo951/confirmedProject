@@ -21,10 +21,6 @@ const LoginForm = props => {
     username.length > 3 ? setErrorUsername(false) : setErrorUsername(true);
     password.length > 7 ? setErrorPassword(false) : setErrorPassword(true);
 
-    console.log(
-      `Je suis errorUsername = ${errorUsername}  & Je suis errorPassword = ${errorPassword}`,
-    );
-
     errorUsername == false && errorPassword == false
       ? getToken()
       : alert('Erreur avec vos identifiants');
@@ -41,9 +37,6 @@ const LoginForm = props => {
           'token',
           `${response.headers['x-access-token']}`,
         );
-        // const token = await AsyncStorage.getItem('token');
-        // console.log('Je suis un token = ', token);
-        // console.log(response);
         navigation.navigate('Home');
       })
       .catch(function (error) {

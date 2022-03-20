@@ -6,6 +6,7 @@ import Auction from '../components/auction';
 import TwoProducts from '../components/twoProducts';
 import FrameVideo from '../components/frameVideo';
 import FrameImage from '../components/frameImage';
+import LastImages from "../components/lastImages"
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -121,9 +122,12 @@ const Home = ({navigation}) => {
       {/* <View>
         <FrameVideo videos={videos}/>
       </View> */}
-      <View>
+      {/* <View>
         <FrameImage image={images[0]}/>
         <FrameImage image={images[1]}/>
+      </View> */}
+      <View>
+        <LastImages images={product}/>
       </View>
     </View>
   );

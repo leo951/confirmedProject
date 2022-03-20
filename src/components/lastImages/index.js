@@ -20,6 +20,36 @@ const LastImages = props => {
               }}
               source={{uri: `https:${item?.media.imageUrl.split(':')[1]}`}}
             />
+            <Text
+              style={{
+                fontWeight: '500',
+                textAlign: 'center',
+                justifyContent: 'center',
+                marginTop: 10,
+              }}>
+              150, 00 €
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold',
+                textAlign: 'center',
+                justifyContent: 'center',
+                marginTop: 10,
+              }}>
+              {item.shoe}
+            </Text>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: '400',
+                textAlign: 'center',
+                justifyContent: 'center',
+                textDecorationLine: 'underline',
+                marginVertical: 20,
+              }}>
+              Acheter
+            </Text>
           </View>
         )}
         keyExtractor={item => item.name}

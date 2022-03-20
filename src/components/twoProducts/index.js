@@ -23,9 +23,43 @@ const TwoProducts = props => {
         renderItem={({item}) => (
           <View>
             <Image
-              style={{height: 250, width: SCREEN_WIDTH - 50, marginHorizontal: 10}}
+              style={{
+                height: 250,
+                width: SCREEN_WIDTH - 50,
+                marginHorizontal: 10,
+              }}
               source={{uri: `https:${item?.media.imageUrl.split(':')[1]}`}}
             />
+            <Text
+              style={{
+                fontWeight: '500',
+                textAlign: 'center',
+                justifyContent: 'center',
+                marginTop: 10,
+              }}>
+              120, 00 €
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold',
+                textAlign: 'center',
+                justifyContent: 'center',
+                marginTop: 10,
+              }}>
+              {item.shoe}
+            </Text>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: '400',
+                textAlign: 'center',
+                justifyContent: 'center',
+                textDecorationLine: 'underline',
+                marginTop: 10,
+              }}>
+              Acheter
+            </Text>
           </View>
         )}
         keyExtractor={item => item.name}

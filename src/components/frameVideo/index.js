@@ -18,7 +18,7 @@ const FrameVideo = props => {
         loop={true}
         // showDuration={false}
         resizeMode="cover"
-        onHideControls={false}
+        // onHideControls={false}
         disableFullscreen
         hideControlsOnStart={true}
         autoplay

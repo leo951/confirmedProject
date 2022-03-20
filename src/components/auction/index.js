@@ -43,7 +43,7 @@ const Auction = props => {
           justifyContent: 'center',
           marginTop: 10,
         }}>
-        {props.auction.shoe}
+        {props.auction?.shoe}
       </Text>
       <Text
         style={{

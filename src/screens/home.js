@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Text, View, FlatList, Image} from 'react-native';
+import {Text, View, ScrollView} from 'react-native';
 
 import Auction from '../components/auction';
 import TwoProducts from '../components/twoProducts';
 import FrameVideo from '../components/frameVideo';
 import FrameImage from '../components/frameImage';
-import LastImages from "../components/lastImages"
+import LastImages from '../components/lastImages';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -87,48 +87,46 @@ const Home = ({navigation}) => {
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      {/* <View>
-        <Text>
-          {randomInt == 0 && (
-            <Auction auction={auction[0]} price={'200, 00 €'} />
-          )}
-        </Text>
-        <Text>
-          {
-            (randomInt = 1 && (
-              <Auction auction={auction[1]} price={'230, 00 €'} />
-            ))
-          }
-        </Text>
-        <Text>
-          {
-            (randomInt = 2 && (
-              <Auction auction={auction[2]} price={'250, 00 €'} />
-            ))
-          }
-        </Text>
-      </View> */}
-      {/* <View style={{justifyContent: 'space-evenly'}}>
+      <ScrollView>
         <View>
-          <TwoProducts product1={product[0]} product2={product[1]} />
+          {/* Affichage des tirage au sort  */}
+          <Text>
+            {randomInt == 0 && (
+              <Auction auction={auction[0]} price={'200, 00 €'} />
+            )}
+          </Text>
+          <Text>
+            {
+              (randomInt = 1 && (
+                <Auction auction={auction[1]} price={'230, 00 €'} />
+              ))
+            }
+          </Text>
+          <Text>
+            {
+              (randomInt = 2 && (
+                <Auction auction={auction[2]} price={'250, 00 €'} />
+              ))
+            }
+          </Text>
         </View>
+
+        <TwoProducts product1={product[0]} product2={product[1]} />
+
+        <FrameVideo videos={videos} />
+
+        <TwoProducts product1={product[2]} product2={product[3]} />
+
+        <FrameImage image={images[0]} />
+
+        <TwoProducts product1={product[4]} product2={product[5]} />
+
+        <FrameImage image={images[1]} />
+
         <View>
-          <TwoProducts product1={product[2]} product2={product[3]} />
+          <LastImages images={product} />
         </View>
-        <View>
-          <TwoProducts product1={product[4]} product2={product[5]} />
-        </View>
-      </View> */}
-      {/* <View>
-        <FrameVideo videos={videos}/>
-      </View> */}
-      {/* <View>
-        <FrameImage image={images[0]}/>
-        <FrameImage image={images[1]}/>
-      </View> */}
-      <View>
-        <LastImages images={product}/>
-      </View>
+      </ScrollView>
     </View>
   );
 };

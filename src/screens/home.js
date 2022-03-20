@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Text, View, FlatList, Image} from 'react-native';
 
+import Auction from '../components/auction';
+
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Home = ({navigation}) => {
-  const randomInt = getRandomInt(4);
+  let randomInt = getRandomInt(4);
   const [product, setProduct] = useState([]);
   const [auction, setAuction] = useState([]);
   const [twoProducts, setTwoProducts] = useState([]);
@@ -81,21 +83,27 @@ const Home = ({navigation}) => {
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <FlatList
-        data={product}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <View>
-            <Button
-              onPress={() => navigation.navigate('Details', {id: item.id})}>
-              <Image
-                style={{height: 150, width: 280}}
-                source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
-              />
-              <TextStyled>{item.title}</TextStyled>
-            </Button>
-          </View>
-        )}></FlatList>
+      <View>
+        <Text>
+          {randomInt == 0 && (
+            <Auction auction={auction[0]} price={'200, 00 €'} />
+          )}
+        </Text>
+        <Text>
+          {
+            (randomInt = 1 && (
+              <Auction auction={auction[1]} price={'230, 00 €'} />
+            ))
+          }
+        </Text>
+        <Text>
+          {
+            (randomInt = 2 && (
+              <Auction auction={auction[2]} price={'250, 00 €'} />
+            ))
+          }
+        </Text>
+      </View>
     </View>
   );
 };

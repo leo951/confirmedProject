@@ -3,6 +3,8 @@ import axios from 'axios';
 import {Text, View, FlatList, Image} from 'react-native';
 
 import Auction from '../components/auction';
+import TwoProducts from '../components/twoProducts';
+import FrameVideo from '../components/frameVideo';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -83,7 +85,7 @@ const Home = ({navigation}) => {
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View>
+      {/* <View>
         <Text>
           {randomInt == 0 && (
             <Auction auction={auction[0]} price={'200, 00 €'} />
@@ -103,6 +105,20 @@ const Home = ({navigation}) => {
             ))
           }
         </Text>
+      </View> */}
+      {/* <View style={{justifyContent: 'space-evenly'}}>
+        <View>
+          <TwoProducts product1={product[0]} product2={product[1]} />
+        </View>
+        <View>
+          <TwoProducts product1={product[2]} product2={product[3]} />
+        </View>
+        <View>
+          <TwoProducts product1={product[4]} product2={product[5]} />
+        </View>
+      </View> */}
+      <View>
+        <FrameVideo videos={videos}/>
       </View>
     </View>
   );

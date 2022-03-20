@@ -5,6 +5,7 @@ import {Text, View, FlatList, Image} from 'react-native';
 import Auction from '../components/auction';
 import TwoProducts from '../components/twoProducts';
 import FrameVideo from '../components/frameVideo';
+import FrameImage from '../components/frameImage';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -117,8 +118,12 @@ const Home = ({navigation}) => {
           <TwoProducts product1={product[4]} product2={product[5]} />
         </View>
       </View> */}
-      <View>
+      {/* <View>
         <FrameVideo videos={videos}/>
+      </View> */}
+      <View>
+        <FrameImage image={images[0]}/>
+        <FrameImage image={images[1]}/>
       </View>
     </View>
   );

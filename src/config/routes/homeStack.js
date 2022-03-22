@@ -1,22 +1,42 @@
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Home from '../../screens/home';
 import Shop from '../../screens/shop';
+import Login from '../../screens/login';
+import Profil from '../../screens/profil';
 
-const Stack = createNativeStackNavigator();
+const Bottom = createBottomTabNavigator();
 
 const HomeStack = () => {
+  const [user, setUser] = useState(null);
+  /**
+   * @todo: Faire en sorte d'actualiser cette page
+   */
+  useEffect(() => {
+    verifUser();
+  }, []);
+
+  const verifUser = async () => {
+    let item = undefined;
+    item = await AsyncStorage.getItem('user');
+    console.log('Je suis item après le get = ', JSON.parse(item));
+
+    item != null ? setUser(JSON.parse(item)) : setUser(null);
+  };
+
   return (
-    // <Stack.Navigator>
-    //   <Stack.Screen name='Home' component={Home} />
-    //   <Stack.Screen name='Shop' component={Shop} />
-    // </Stack.Navigator>
-    <BottomTab.Navigator screenOptions={{headerShown: false}}>
-      <BottomTab.Screen name="HomeStack" component={HomeStack} />
-      <BottomTab.Screen name="Home" component={Home} />
-      <BottomTab.Screen name="Shop" component={Shop} />
-    </BottomTab.Navigator>
+    <Bottom.Navigator screenOptions={{headerShown: false}}>
+      <Bottom.Screen name="Home" component={Home} />
+      {/* <Bottom.Screen name="Shop" component={Shop} /> */}
+      {user != null ? (
+        <Bottom.Screen name="Profil" component={Profil} />
+      ) : (
+        <Bottom.Screen name="Login" component={Login} />
+      )}
+    </Bottom.Navigator>
   );
 };
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Text, View, TextInput, Button} from 'react-native';
 
 import InputForm from '../inputForm/index';
@@ -18,6 +18,8 @@ const LoginForm = props => {
   const navigation = useNavigation();
 
   const validate = () => {
+    console.log("Je suis username dans validate = ",username);
+    console.log("Je suis password dans validate = ",password);
     username.length > 3 ? setErrorUsername(false) : setErrorUsername(true);
     password.length > 7 ? setErrorPassword(false) : setErrorPassword(true);
 
@@ -37,6 +39,8 @@ const LoginForm = props => {
           'token',
           `${response.headers['x-access-token']}`,
         );
+        const user = {username: username, password: password};
+        await AsyncStorage.setItem('user', JSON.stringify(user));
         navigation.navigate('Home');
       })
       .catch(function (error) {
@@ -51,7 +55,7 @@ const LoginForm = props => {
           placeholder={'Email'}
           typePassword={false}
           setText={setUsername}
-          text={username}
+          // text={username}
         />
         {errorUsername == true && (
           <UsernameErrorTrue>
@@ -62,7 +66,7 @@ const LoginForm = props => {
           placeholder={'Mot de passe'}
           typePassword={true}
           setText={setPassword}
-          text={password}
+          // text={password}
         />
         {errorPassword == true && (
           <PasswordErrorTrue>

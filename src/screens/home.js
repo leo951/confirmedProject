@@ -75,7 +75,6 @@ const Home = ({navigation}) => {
   }
   if (product.length > 0 && auction.length < randomInt) {
     //A lancer entre 1 & 3 fois
-    console.log('Je suis randomInt == = ', randomInt);
     addAuction(randomInt);
   }
 

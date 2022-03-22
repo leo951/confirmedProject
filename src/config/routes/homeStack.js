@@ -30,7 +30,7 @@ const HomeStack = () => {
   return (
     <Bottom.Navigator screenOptions={{headerShown: false}}>
       <Bottom.Screen name="Home" component={Home} />
-      {/* <Bottom.Screen name="Shop" component={Shop} /> */}
+      <Bottom.Screen name="Shop" component={Shop} />
       {user != null ? (
         <Bottom.Screen name="Profil" component={Profil} />
       ) : (

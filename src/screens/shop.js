@@ -5,6 +5,9 @@ import {Text, View, FlatList, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import productsGrid from '../components/products/productsGrid';
+import ProductsItem from '../components/products/productsItem';
+
 const Shop = ({navigation}) => {
   const [product, setProduct] = useState([]);
 
@@ -27,22 +30,26 @@ const Shop = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <FlatList
-        data={product}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <View>
-            <Button
-              onPress={() => navigation.navigate('Details', {id: item.id})}>
-              <Image
-                style={{height: 150, width: 280}}
-                source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
-              />
-              <TextStyled>{item.title}</TextStyled>
-            </Button>
-          </View>
-        )}></FlatList>
+    // <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    //   <FlatList
+    //     data={product}
+    //     keyExtractor={item => item.id}
+    //     renderItem={({item}) => (
+    //       <View>
+    //         <Button
+    //           onPress={() => navigation.navigate('Details', {id: item.id})}>
+    //           <Image
+    //             style={{height: 150, width: 280}}
+    //             source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
+    //           />
+    //           <TextStyled>{item.title}</TextStyled>
+    //         </Button>
+    //       </View>
+    //     )}></FlatList>
+    // </View>
+
+    <View>
+      <productsGrid products={product}/>
     </View>
   );
 };

@@ -9,6 +9,7 @@ import HomeScreen from '../../screens/home';
 import ShopScreen from '../../screens/shop';
 import DetailsScreen from '../../screens/details';
 import HomeStack from '../routes/homeStack';
+import FavoriteScreen from '../../screens/favorite'
 
 // const BottomTab = createBottomTabNavigator();
 
@@ -22,6 +23,7 @@ const Routes = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Shop" component={ShopScreen}/>*/}
       <Stack.Screen name="Details" component={DetailsScreen}/> 
+      <Stack.Screen name="Favorite" component={FavoriteScreen}/> 
     </Stack.Navigator>
   );
 };

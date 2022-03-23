@@ -8,7 +8,6 @@ import ProductsItem from '../products/productsItem';
 const Auction = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
-
   return (
     <View>
       <ProductsItem

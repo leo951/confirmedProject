@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import {Text, Image, Dimensions, Button} from 'react-native';
 import styled from 'styled-components';
 
+import addToFavorite from '../utils/Favorite/addFavorite';
+
 const DetailsScreen = ({route}) => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const [sneaker, setSneaker] = useState([]);
@@ -83,12 +85,29 @@ const DetailsScreen = ({route}) => {
           textAlign: 'left',
           justifyContent: 'flex-start',
           marginTop: 10,
+          marginBottom: 20,
         }}>
         Un prototype voit la lumière. Avec sa silhouette inédite issue de la
         collection adidas, cette chaussure affiche clairement son penchant pour
         la competition. la couleur {sneaker[0]?.colorway} ajoute une touche
         d'exigence.
       </Text>
+
+      <Button
+        onPress={async () => {
+          await addToFavorite(sneaker[0]);
+        }}
+        style={{
+          width: 330,
+          fontSize: 15,
+          fontWeight: '400',
+          textAlign: 'left',
+          justifyContent: 'flex-start',
+          textDecorationLine: 'underline',
+          marginTop: 20,
+        }}
+        title={'AJOUTER AUX FAVORIES'}
+      />
 
       <Text
         style={{

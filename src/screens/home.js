@@ -75,7 +75,7 @@ const Home = ({navigation}) => {
     //A lancer 3 fois
     addValueInTwoProducts(2);
   }
-  if (product.length > 0 && auction.length < randomInt) {
+   if (product.length > 0 && auction.length < randomInt) {
     //A lancer entre 1 & 3 fois
     addAuction(randomInt);
   }

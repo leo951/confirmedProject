@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import {View} from 'react-native';
+import {View, Button} from 'react-native';
 
 import Logo from '../components/logo/index';
 import ProfilForm from '../components/form/profilForm';
@@ -14,6 +14,21 @@ function ProfilScreen({navigation}) {
           <Logo />
         </View>
         <View>
+          <View
+            style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
+            <Button
+            onPress={() => navigation.navigate('Favorite')}
+              style={{
+                width: 330,
+                fontSize: 15,
+                fontWeight: '400',
+                textAlign: 'flex-end',
+                marginTop: 20,
+              }}
+              title={'AJOUTER AUX FAVORIES'}
+            />
+          </View>
+
           <ProfilForm />
         </View>
       </ViewContainer>

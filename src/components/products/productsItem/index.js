@@ -9,8 +9,6 @@ const productsItem = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const counter = {hours: 1, minutes: 20, seconds: 40};
 
-  console.log('Je suis props dans ProductsItem = ', props);
-
   return (
     <View style={{marginVertical: 20}}>
       <View>

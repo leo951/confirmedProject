@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Text, View, FlatList, Image} from 'react-native';
+import {Text, View, FlatList, Image, Dimensions} from 'react-native';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import productsGrid from '../components/products/productsGrid';
+import ProductsGrid from '../components/products/productsGrid';
 import ProductsItem from '../components/products/productsItem';
 
 const Shop = ({navigation}) => {
+  const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
@@ -48,8 +49,8 @@ const Shop = ({navigation}) => {
     //     )}></FlatList>
     // </View>
 
-    <View>
-      <productsGrid products={product}/>
+    <View style={{width: SCREEN_WIDTH}}>
+      <ProductsGrid products={product}/>
     </View>
   );
 };

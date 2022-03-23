@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Text, View, ScrollView} from 'react-native';
+import {Text, View, ScrollView, FlatList} from 'react-native';
 
 import Auction from '../components/auction';
 import TwoProducts from '../components/twoProducts';
@@ -30,8 +30,10 @@ const Home = ({navigation}) => {
       url: 'https://v1-sneakers.p.rapidapi.com/v1/sneakers',
       params: {limit: '20', brand: 'Adidas'},
       headers: {
-        'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
-        'x-rapidapi-key': '0b4a3b6537mshd039b5f654ce9b1p195a55jsn249c4d2939a2',
+        // 'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
+        // 'x-rapidapi-key': '0b4a3b6537mshd039b5f654ce9b1p195a55jsn249c4d2939a2',
+        'X-RapidAPI-Host': 'v1-sneakers.p.rapidapi.com',
+        'X-RapidAPI-Key': '4fa17e2b51msha2b169814db974ep1b2769jsnc61411cb32f6',
       },
     })
       .then(response => {
@@ -82,37 +84,45 @@ const Home = ({navigation}) => {
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <ScrollView>
         <View>
-          {/* Affichage des tirage au sort  */}
           <Text>
             {auction[0] != undefined && (
-              <Auction auction={auction[0]} price={'200, 00 €'} />
+              <Auction
+                navigation={navigation}
+                auction={auction[0]}
+              />
             )}
           </Text>
           <Text>
-            {
-              (auction[1] != undefined && (
-                <Auction auction={auction[1]} price={'230, 00 €'} />
-              ))
-            }
+            {auction[1] != undefined && (
+              <Auction
+                navigation={navigation}
+                auction={auction[1]}
+              />
+            )}
           </Text>
           <Text>
-            {
-              (auction[2] != undefined && (
-                <Auction auction={auction[2]} price={'250, 00 €'} />
-              ))
-            }
+            {auction[2] != undefined && (
+              <Auction
+                navigation={navigation}
+                auction={auction[2]}
+              />
+            )}
           </Text>
         </View>
 
-        <TwoProducts navigation={navigation} product1={product[0]} product2={product[1]} />
+          <TwoProducts
+            navigation={navigation}
+            product1={product[0]}
+            product2={product[1]}
+          />
 
         <FrameVideo videos={videos} />
 
-        <TwoProducts product1={product[2]} product2={product[3]} />
+        <TwoProducts navigation={navigation} product1={product[2]} product2={product[3]} />
 
         <FrameImage image={images[0]} />
 
-        <TwoProducts product1={product[4]} product2={product[5]} />
+        <TwoProducts navigation={navigation} product1={product[4]} product2={product[5]} />
 
         <FrameImage image={images[1]} />
 

@@ -1,23 +1,49 @@
 import React from 'react';
 import {View, Image, Text, FlatList, Dimensions} from 'react-native';
 
+import CountDownTimer from '../../countDownTimer';
+
 import styled from 'styled-components';
 
-const productsItem = (props) => {
+const productsItem = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
+  const counter = {hours: 1, minutes: 20, seconds: 40};
+
+  console.log('Je suis props dans ProductsItem = ', props);
 
   return (
     <View style={{marginVertical: 20}}>
       <View>
-        <Button onPress={() => {
-            console.log("Je suis dans le onClick et voici les props = ", props);
-            props.navigation?.navigate('Details', {id: props.product.id})}}>
+        <Button
+          onPress={() => {
+            console.log('Je suis dans le onClick et voici les props = ', props);
+            props.navigation?.navigate('Details', {
+              id: props.product.id,
+              auction: props.auction,
+            });
+          }}>
           <Image
-            style={{height: 250, width: props.width, marginHorizontal: props.marginHorizontal}}
+            style={{
+              height: 250,
+              width: props.width,
+              marginHorizontal: props.marginHorizontal,
+            }}
             source={{
               uri: `https:${props.product?.media.imageUrl.split(':')[1]}`,
             }}
           />
+          {props.viewTimer == true && (
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 25,
+                width: SCREEN_WIDTH,
+                backgroundColor: 'blue',
+              }}>
+              <CountDownTimer counter={counter} />
+            </View>
+          )}
           <Text
             style={{
               fontWeight: '500',
@@ -48,7 +74,7 @@ const productsItem = (props) => {
           textDecorationLine: 'underline',
           marginTop: 10,
         }}>
-        Acheter
+        {props.viewTimer == true ? 'PARTICIPER' : 'ACHETER'}
       </Text>
     </View>
   );

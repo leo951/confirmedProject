@@ -11,6 +11,8 @@ const TwoProducts = props => {
 
   const [products, setProducts] = useState([]);
 
+  console.log('Je suis props.navigation dans twoProduct = ', props.navigation);
+
   useEffect(() => {
     if (props.product1 && props.product2) {
       setProducts([props.product1, props.product2]);
@@ -66,14 +68,15 @@ const TwoProducts = props => {
         )}
         keyExtractor={item => item.name}
       /> */}
-
-      <ProductsGrid
-        width={SCREEN_WIDTH - 50}
-        marginHorizontal={10}
-        navigation={props.navigation}
-        horizontal={true}
-        products={products}
-      />
+      {/* {props.navigation != undefined && ( */}
+        <ProductsGrid
+          width={SCREEN_WIDTH - 50}
+          marginHorizontal={10}
+          navigation={props.navigation}
+          horizontal={true}
+          products={products}
+        />
+      {/* )} */}
     </View>
   );
 };

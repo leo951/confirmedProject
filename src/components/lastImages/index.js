@@ -1,15 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, Image, Dimensions, FlatList} from 'react-native';
 
+import ProductsGrid from '../products/productsGrid';
+
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const LastImages = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
+  console.log("Je suis props dans listImages = ",props);
+
   return (
     <View>
-      <FlatList
+      {/* <FlatList
         data={props.images}
         renderItem={({item}) => (
           <View>
@@ -27,7 +31,7 @@ const LastImages = props => {
                 justifyContent: 'center',
                 marginTop: 10,
               }}>
-              150, 00 €
+              {`${item.retailPrice},00 €`}
             </Text>
             <Text
               style={{
@@ -53,6 +57,12 @@ const LastImages = props => {
           </View>
         )}
         keyExtractor={item => item.name}
+      /> */}
+      <ProductsGrid
+        width={SCREEN_WIDTH}
+        navigation={props.navigation}
+        horizontal={false}
+        products={props.images}
       />
     </View>
   );

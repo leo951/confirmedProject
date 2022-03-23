@@ -63,6 +63,16 @@ const productsItem = props => {
             }}>
             {props.product?.shoe}
           </Text>
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: '400',
+              textAlign: 'center',
+              justifyContent: 'center',
+              marginTop: 10,
+            }}>
+            {`${props.product?.retailPrice}, 00 €`}
+          </Text>
         </Button>
       </View>
       <Text

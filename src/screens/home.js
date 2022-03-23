@@ -127,7 +127,7 @@ const Home = ({navigation}) => {
         <FrameImage image={images[1]} />
 
         <View>
-          <LastImages images={product} />
+          <LastImages navigation={navigation} images={product} />
         </View>
       </ScrollView>
     </View>

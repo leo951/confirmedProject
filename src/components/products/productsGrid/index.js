@@ -4,11 +4,9 @@ import {View, FlatList, Text} from 'react-native';
 import ProductsItem from '../productsItem';
 
 const productsGrid = props => {
-  console.log('Je suis props dans ProductsGrid = ', props.navigation);
 
   return (
     <View>
-      {/* {props.navigation != undefined && ( */}
         <FlatList
           horizontal={props.horizontal}
           data={props.products}
@@ -24,7 +22,6 @@ const productsGrid = props => {
           )}
           keyExtractor={item => item.name}
         />
-      {/* )} */}
     </View>
   );
 };

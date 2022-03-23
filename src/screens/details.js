@@ -29,8 +29,6 @@ const DetailsScreen = ({route}) => {
       });
   }, []);
 
-  console.log('Je suis sneaker = ', sneaker);
-
   return (
     <Container>
       <Image

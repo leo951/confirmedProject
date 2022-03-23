@@ -16,7 +16,6 @@ const productsItem = props => {
       <View>
         <Button
           onPress={() => {
-            console.log('Je suis dans le onClick et voici les props = ', props);
             props.navigation?.navigate('Details', {
               id: props.product.id,
               auction: props.auction,

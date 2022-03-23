@@ -9,8 +9,9 @@ const productsGrid = props => {
   return (
     <View>
       <FlatList
+        horizontal={props.horizontal}
         data={props.products}
-        renderItem={({item}) => <ProductsItem navigation={props.navigation} product={item} />}
+        renderItem={({item}) =>  <ProductsItem width={props.width} marginHorizontal={props.marginHorizontal} navigation={props.navigation} product={item} />}
         keyExtractor={item => item.name}
       />
     </View>

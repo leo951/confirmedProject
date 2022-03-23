@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, Image, Dimensions, FlatList} from 'react-native';
 
+import ProductsGrid from '../products/productsGrid';
+
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -17,7 +19,7 @@ const TwoProducts = props => {
 
   return (
     <View style={{marginVertical: 50}}>
-      <FlatList
+      {/* <FlatList
         data={products}
         horizontal={true}
         renderItem={({item}) => (
@@ -63,6 +65,14 @@ const TwoProducts = props => {
           </View>
         )}
         keyExtractor={item => item.name}
+      /> */}
+
+      <ProductsGrid
+        width={SCREEN_WIDTH - 50}
+        marginHorizontal={10}
+        navigation={props.navigation}
+        horizontal={true}
+        products={products}
       />
     </View>
   );

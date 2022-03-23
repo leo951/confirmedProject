@@ -3,15 +3,17 @@ import {View, Image, Text, FlatList, Dimensions} from 'react-native';
 
 import styled from 'styled-components';
 
-const productsItem = (props, {navigation}) => {
+const productsItem = (props) => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
   return (
     <View style={{marginVertical: 20}}>
       <View>
-        <Button onPress={() => props.navigation.navigate('Details', {id: props.product.id})}>
+        <Button onPress={() => {
+            console.log("Je suis dans le onClick et voici les props = ", props);
+            props.navigation?.navigate('Details', {id: props.product.id})}}>
           <Image
-            style={{height: 250, width: SCREEN_WIDTH}}
+            style={{height: 250, width: props.width, marginHorizontal: props.marginHorizontal}}
             source={{
               uri: `https:${props.product?.media.imageUrl.split(':')[1]}`,
             }}

@@ -104,7 +104,7 @@ const Home = ({navigation}) => {
           </Text>
         </View>
 
-        <TwoProducts product1={product[0]} product2={product[1]} />
+        <TwoProducts navigation={navigation} product1={product[0]} product2={product[1]} />
 
         <FrameVideo videos={videos} />
 

@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {Text, Image} from 'react-native';
+import {Text, Image, Dimensions, Button} from 'react-native';
 import styled from 'styled-components';
 
 const DetailsScreen = ({route}) => {
+  const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const [sneaker, setSneaker] = useState([]);
   const {
     params: {id},
@@ -28,16 +29,72 @@ const DetailsScreen = ({route}) => {
       });
   }, []);
 
+  console.log('Je suis sneaker = ', sneaker);
+
   return (
     <Container>
       <Image
-        style={{height: 150, width: 280}}
-        source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
+        style={{height: 250, width: SCREEN_WIDTH}}
+        source={{
+          uri: `https:${sneaker[0]?.media?.imageUrl.split(':')[1]}`,
+        }}
       />
+      <Text
+        style={{
+          width: 250,
+          fontSize: 40,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          justifyContent: 'center',
+          marginTop: 10,
+        }}>
+        {sneaker[0]?.shoe}
+      </Text>
+      <Text
+        style={{
+          width: 230,
+          fontSize: 15,
+          fontWeight: '400',
+          textAlign: 'center',
+          justifyContent: 'center',
+          marginTop: 10,
+          marginBottom: 50,
+        }}>
+        {sneaker[0]?.colorway}
+      </Text>
+      <Text
+        style={{
+          width: 330,
+          fontSize: 15,
+          fontWeight: '400',
+          textAlign: 'left',
+          justifyContent: 'flex-start',
+          marginTop: 10,
+        }}>
+        Un prototype voit la lumière. Avec sa silhouette inédite issue de la
+        collection adidas, cette chaussure affiche clairement son penchant pour
+        la competition. la couleur {sneaker[0]?.colorway} ajoute une touche
+        d'exigence.
+      </Text>
+
+      <Text
+        style={{
+          width: 330,
+          fontSize: 15,
+          fontWeight: '400',
+          textAlign: 'left',
+          justifyContent: 'flex-start',
+          textDecorationLine: 'underline',
+          marginTop: 20,
+        }}>
+        CARACTERISTIQUES
+      </Text>
     </Container>
   );
 };
 
-const Container = styled.View``;
+const Container = styled.View`
+  align-items: center;
+`;
 
 export default DetailsScreen;

@@ -22,7 +22,6 @@ const HomeStack = () => {
   const verifUser = async () => {
     let item = undefined;
     item = await AsyncStorage.getItem('user');
-    console.log('Je suis item après le get = ', JSON.parse(item));
 
     item != null ? setUser(JSON.parse(item)) : setUser(null);
   };

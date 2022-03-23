@@ -50,7 +50,7 @@ const Shop = ({navigation}) => {
     // </View>
 
     <View style={{width: SCREEN_WIDTH}}>
-      <ProductsGrid products={product}/>
+      <ProductsGrid navigation={navigation} products={product}/>
     </View>
   );
 };

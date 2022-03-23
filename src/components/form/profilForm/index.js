@@ -36,13 +36,11 @@ const ProfilForm = props => {
   };
 
   const getUser = async () => {
-    console.log('Je suis item au debut de la fonction= ',item);
     const item = await AsyncStorage.getItem('user');
 
     const itemParsed = JSON.parse(item);
     setUser(itemParsed);
     setUsername(user.username);
-    console.log('Je suis item a la fin de la fonction= ',item);
     return item
 
   };

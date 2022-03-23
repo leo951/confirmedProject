@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {Text} from 'react-native';
+import {Text, Image} from 'react-native';
 import styled from 'styled-components';
 
 const DetailsScreen = ({route}) => {
-  const [sneakers, setSneakers] = useState([]);
+  const [sneaker, setSneaker] = useState([]);
   const {
     params: {id},
   } = route;
+
+  console.log("Je suis dans details et voici l'id = ", id);
 
   useEffect(() => {
     axios({
@@ -19,7 +21,7 @@ const DetailsScreen = ({route}) => {
       },
     })
       .then(response => {
-        setSneakers(response.data.results)
+        setSneaker(response.data.results);
       })
       .catch(error => {
         console.log('Je suis error dans le getById = ', error);
@@ -28,7 +30,10 @@ const DetailsScreen = ({route}) => {
 
   return (
     <Container>
-      <Text>Je suis dans Details et voici l'id {id}</Text>
+      <Image
+        style={{height: 150, width: 280}}
+        source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
+      />
     </Container>
   );
 };

@@ -18,8 +18,6 @@ const LoginForm = props => {
   const navigation = useNavigation();
 
   const validate = () => {
-    console.log("Je suis username dans validate = ",username);
-    console.log("Je suis password dans validate = ",password);
     username.length > 3 ? setErrorUsername(false) : setErrorUsername(true);
     password.length > 7 ? setErrorPassword(false) : setErrorPassword(true);
 

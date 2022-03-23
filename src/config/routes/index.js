@@ -20,8 +20,8 @@ const Routes = () => {
       <Stack.Screen name="HomeStack" component={HomeStack} />
       {/* <Stack.Screen name="Home" component={HomeScreen}/>
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Shop" component={ShopScreen}/>
-      <Stack.Screen name="Details" component={DetailsScreen}/> */}
+      <Stack.Screen name="Shop" component={ShopScreen}/>*/}
+      <Stack.Screen name="Details" component={DetailsScreen}/> 
     </Stack.Navigator>
   );
 };

@@ -17,18 +17,18 @@ function ProfilScreen({navigation}) {
           <View
             style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
             <Button
-            onPress={() => navigation.navigate('Favorite')}
+              onPress={() => navigation.navigate('Favorite')}
               style={{
                 width: 330,
                 fontSize: 15,
                 fontWeight: '400',
                 textAlign: 'flex-end',
+
                 marginTop: 20,
               }}
-              title={'AJOUTER AUX FAVORIES'}
+              title={'VOIR FAVORIS'}
             />
           </View>
-
           <ProfilForm />
         </View>
       </ViewContainer>

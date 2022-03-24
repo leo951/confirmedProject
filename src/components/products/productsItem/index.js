@@ -3,9 +3,12 @@ import {View, Image, Text, FlatList, Dimensions} from 'react-native';
 
 import CountDownTimer from '../../countDownTimer';
 
+import removeFromFavorite from '../../../utils/Favorite/removeFavorite';
+
 import styled from 'styled-components';
 
 const productsItem = props => {
+  console.log('Je suis props.product = ', props.product);
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const counter = {hours: 1, minutes: 20, seconds: 40};
 
@@ -26,7 +29,7 @@ const productsItem = props => {
               marginHorizontal: props.marginHorizontal,
             }}
             source={{
-              uri: `https:${props.product?.media.imageUrl.split(':')[1]}`,
+              uri: `https:${props.product?.media?.imageUrl.split(':')[1]}`,
             }}
           />
           {props.viewTimer == true && (
@@ -83,6 +86,20 @@ const productsItem = props => {
         }}>
         {props.viewTimer == true ? 'PARTICIPER' : 'ACHETER'}
       </Text>
+      {props.isFavorite == true && (
+        <Text
+          onPress={() => removeFromFavorite(props.product)}
+          style={{
+            fontSize: 15,
+            fontWeight: '400',
+            textAlign: 'center',
+            justifyContent: 'center',
+            textDecorationLine: 'underline',
+            marginTop: 10,
+          }}>
+          {'SUPPRIMER DES FAVORIS'}
+        </Text>
+      )}
     </View>
   );
 };

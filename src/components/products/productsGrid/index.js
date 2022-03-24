@@ -5,6 +5,8 @@ import ProductsItem from '../productsItem';
 
 const productsGrid = props => {
 
+  console.log("Je suis props dans productGrid= ",props);
+
   return (
     <View>
         <FlatList
@@ -18,6 +20,7 @@ const productsGrid = props => {
               navigation={props.navigation}
               product={item}
               auction={false}
+              isFavorite={props.isFavorite}
             />
           )}
           keyExtractor={item => item.name}

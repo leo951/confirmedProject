@@ -5,17 +5,18 @@ import readFavorite from './readFavorite';
 const addToFavorite = async item => {
   const formerFavorite = await readFavorite();
   const filteredFavorite = formerFavorite.filter(fav => fav.id !== item.id);
+  // console.log('Je suis filteredFavorite = ', filteredFavorite);
   const arrayOfFavorite = filteredFavorite || [];
 
   try {
-    const jsonValue = JSON.stringify([
-      ...arrayOfFavorite,
-      {name: item.name, id: item.id},
-    ]);
+    const jsonValue = JSON.stringify([...arrayOfFavorite, item]);
+    // await AsyncStorage.removeItem('favorite');
+
     await AsyncStorage.setItem('favorite', jsonValue);
+    // await AsyncStorage.removeItem('favorite')
     const getFavorite = await AsyncStorage.getItem('favorite');
     await console.log('Je suis getFavorite = ', getFavorite);
-    
+
     showMessage({
       message: `${item.name} à bien été ajouté aux favoris`,
       type: 'success',

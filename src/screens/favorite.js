@@ -1,16 +1,38 @@
-import * as React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {Text, View, Image, Dimensions, FlatList} from 'react-native';
 import styled from 'styled-components';
+import ProductsGrid from '../components/products/productsGrid';
+import readFavorite from '../utils/Favorite/readFavorite';
 
-import {View} from 'react-native';
+const FavoriteScreen = () => {
+  const navigation = useNavigation();
+  const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
+  const [favorite, setFavorite] = useState([]);
 
-function FavoriteScreen({navigation}) {
-    console.log("Je suis dans favoriteScreen");
+  readFavorite()
+    .then(res => {
+      console.log(res);
+      setFavorite(res);
+    })
+    .catch(err => console.log('Je suis err = ', err));
+
+  // const getFavorite = await readFavorite()
+  // setFavorite(getFavorite);
+
   return (
-    <>
-      <ViewContainer></ViewContainer>
-    </>
+    <ViewContainer>
+      {favorite ? (
+        <ProductsGrid
+          width={SCREEN_WIDTH}
+          isFavorite={true}
+          navigation={navigation}
+          products={favorite}
+        />
+      ) : null}
+    </ViewContainer>
   );
-}
+};
 
 const ViewContainer = styled.View`
   flex: 1;

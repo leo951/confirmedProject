@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import {View, Button} from 'react-native';
 
+import {ViewContainer} from '../components/styles';
+
 import Logo from '../components/logo/index';
 import ProfilForm from '../components/form/profilForm';
 
@@ -14,32 +16,11 @@ function ProfilScreen({navigation}) {
           <Logo />
         </View>
         <View>
-          <View
-            style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
-            <Button
-              onPress={() => navigation.navigate('Favorite')}
-              style={{
-                width: 330,
-                fontSize: 15,
-                fontWeight: '400',
-                textAlign: 'flex-end',
-
-                marginTop: 20,
-              }}
-              title={'VOIR FAVORIS'}
-            />
-          </View>
-          <ProfilForm />
+          <ProfilForm/>
         </View>
       </ViewContainer>
     </>
   );
 }
-
-const ViewContainer = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 export default ProfilScreen;

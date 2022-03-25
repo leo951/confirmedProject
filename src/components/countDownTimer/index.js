@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import styled from 'styled-components';
 
 const CountDownTimer = ({counter}) => {
   const {minutes = 0, seconds = 60} = counter;
@@ -25,13 +26,18 @@ const CountDownTimer = ({counter}) => {
 
   return (
     <View>
-      <Text style={{color: 'white', fontWeight: 'bold'}}>
+      <TextCounter>
         {`${mins.toString().padStart(2, '0')} : ${secs
           .toString()
           .padStart(2, '0')}`}
-      </Text>
+      </TextCounter>
     </View>
   );
 };
+
+const TextCounter = styled.Text`
+  color: white;
+  font-weight: bold;
+`;
 
 export default CountDownTimer;

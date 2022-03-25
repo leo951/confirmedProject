@@ -5,8 +5,6 @@ import ProductsItem from '../productsItem';
 
 const productsGrid = props => {
 
-  console.log("Je suis props dans productGrid= ",props);
-
   return (
     <View>
         <FlatList

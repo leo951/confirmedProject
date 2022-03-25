@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {Text, Image, Dimensions, Button} from 'react-native';
+import {Text, Dimensions, Button} from 'react-native';
+import {Image} from '../components/styles';
 import styled from 'styled-components';
 
 import addToFavorite from '../utils/Favorite/addFavorite';
@@ -34,99 +35,94 @@ const DetailsScreen = ({route}) => {
   return (
     <Container>
       <Image
-        style={{height: 250, width: SCREEN_WIDTH}}
+        width={SCREEN_WIDTH}
         source={{
           uri: `https:${sneaker[0]?.media?.imageUrl.split(':')[1]}`,
         }}
       />
-      <Text
-        style={{
-          width: 250,
-          fontSize: 40,
-          fontWeight: 'bold',
-          textAlign: 'center',
-          justifyContent: 'center',
-          marginTop: 10,
-        }}>
-        {sneaker[0]?.shoe}
-      </Text>
-      <Text
-        style={{
-          width: 230,
-          fontSize: 15,
-          fontWeight: '400',
-          textAlign: 'center',
-          justifyContent: 'center',
-          marginTop: 10,
-          marginBottom: 50,
-        }}>
-        {sneaker[0]?.colorway}
-      </Text>
+      <TextShoe>{sneaker[0]?.shoe}</TextShoe>
+      <TextColor>{sneaker[0]?.colorway}</TextColor>
       {auction == true && (
-        <Text
-          style={{
-            width: 330,
-            fontSize: 15,
-            fontWeight: '400',
-            textAlign: 'left',
-            justifyContent: 'flex-start',
-            marginVertical: 5,
-            color: 'blue',
-          }}>
+        <TextAuction>
           Il vous reste moins de 20min pour participer au tirage au sort...
-        </Text>
+        </TextAuction>
       )}
-
-      <Text
-        style={{
-          width: 330,
-          fontSize: 15,
-          fontWeight: '400',
-          textAlign: 'left',
-          justifyContent: 'flex-start',
-          marginTop: 10,
-          marginBottom: 20,
-        }}>
+      <TextDetails>
         Un prototype voit la lumière. Avec sa silhouette inédite issue de la
         collection adidas, cette chaussure affiche clairement son penchant pour
         la competition. la couleur {sneaker[0]?.colorway} ajoute une touche
         d'exigence.
-      </Text>
+      </TextDetails>
 
-      <Button
+      <AddFav
         onPress={async () => {
           await addToFavorite(sneaker[0]);
-        }}
-        style={{
-          width: 330,
-          fontSize: 15,
-          fontWeight: '400',
-          textAlign: 'left',
-          justifyContent: 'flex-start',
-          textDecorationLine: 'underline',
-          marginTop: 20,
         }}
         title={'AJOUTER AUX FAVORIES'}
       />
 
-      <Text
-        style={{
-          width: 330,
-          fontSize: 15,
-          fontWeight: '400',
-          textAlign: 'left',
-          justifyContent: 'flex-start',
-          textDecorationLine: 'underline',
-          marginTop: 20,
-        }}>
-        CARACTERISTIQUES
-      </Text>
+      <TextCarac>CARACTERISTIQUES</TextCarac>
     </Container>
   );
 };
 
 const Container = styled.View`
   align-items: center;
+`;
+
+const TextShoe = styled.Text`
+  width: ${250}px;
+  font-size: ${40}px;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  margin-top: ${10}px;
+`;
+const TextColor = styled.Text`
+  width: ${230}px;
+  font-size: ${15}px;
+  font-weight: 400;
+  text-align: center;
+  justify-content: center;
+  margin-top: ${10}px;
+  margin-bottom: ${50}px;
+`;
+const TextAuction = styled.Text`
+  width: ${330}px;
+  font-size: ${15}px;
+  font-weight: 400;
+  text-align: left;
+  justify-content: flex-start;
+  margin: 5 0;
+  color: blue;
+`;
+const TextDetails = styled.Text`
+  width: ${330}px;
+  font-size: ${15}px;
+  font-weight: 400;
+  text-align: left;
+  justify-content: flex-start;
+  margin-top: ${10}px;
+  margin-bottom: ${20}px;
+`;
+const TextCarac = styled.Text`
+  width: ${330}px;
+  font-size: ${15}px;
+  font-weight: 400;
+  text-align: left;
+  justify-content: flex-start;
+  text-decoration: underline;
+  margin-top: ${20}px;
+`;
+
+const AddFav = styled.Button`
+  width: ${330}px;
+  font-size: ${15}px;
+  font-weight: 400;
+  text-align: left;
+  justify-content: flex-start;
+  text-decoration-line: underline;
+  margin-top: ${20}px;
 `;
 
 export default DetailsScreen;

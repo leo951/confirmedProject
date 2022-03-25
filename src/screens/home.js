@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Text, View, ScrollView, FlatList} from 'react-native';
+import {ViewContainer} from '../components/styles/index';
 
 import Auction from '../components/auction';
 import TwoProducts from '../components/twoProducts';
 import FrameVideo from '../components/frameVideo';
 import FrameImage from '../components/frameImage';
 import LastImages from '../components/lastImages';
-
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 const Home = ({navigation}) => {
   let randomInt = getRandomInt(4);
@@ -75,55 +73,54 @@ const Home = ({navigation}) => {
     //A lancer 3 fois
     addValueInTwoProducts(2);
   }
-   if (product.length > 0 && auction.length < randomInt) {
+  if (product.length > 0 && auction.length < randomInt) {
     //A lancer entre 1 & 3 fois
     addAuction(randomInt);
   }
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <ViewContainer>
       <ScrollView>
         <View>
           <Text>
             {auction[0] != undefined && (
-              <Auction
-                navigation={navigation}
-                auction={auction[0]}
-              />
+              <Auction navigation={navigation} auction={auction[0]} />
             )}
           </Text>
           <Text>
             {auction[1] != undefined && (
-              <Auction
-                navigation={navigation}
-                auction={auction[1]}
-              />
+              <Auction navigation={navigation} auction={auction[1]} />
             )}
           </Text>
           <Text>
             {auction[2] != undefined && (
-              <Auction
-                navigation={navigation}
-                auction={auction[2]}
-              />
+              <Auction navigation={navigation} auction={auction[2]} />
             )}
           </Text>
         </View>
-          <View>
+        <View>
           <TwoProducts
             navigation={navigation}
             product1={product[0]}
             product2={product[1]}
           />
-          </View>
+        </View>
 
         <FrameVideo videos={videos} />
 
-        <TwoProducts navigation={navigation} product1={product[2]} product2={product[3]} />
+        <TwoProducts
+          navigation={navigation}
+          product1={product[2]}
+          product2={product[3]}
+        />
 
         <FrameImage image={images[0]} />
 
-        <TwoProducts navigation={navigation} product1={product[4]} product2={product[5]} />
+        <TwoProducts
+          navigation={navigation}
+          product1={product[4]}
+          product2={product[5]}
+        />
 
         <FrameImage image={images[1]} />
 
@@ -131,13 +128,8 @@ const Home = ({navigation}) => {
           <LastImages navigation={navigation} images={product} />
         </View>
       </ScrollView>
-    </View>
+    </ViewContainer>
   );
 };
-
-const TextStyled = styled.Text``;
-const Button = styled.TouchableOpacity``;
-
-Home.propTypes = {};
 
 export default Home;

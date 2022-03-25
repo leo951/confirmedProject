@@ -11,6 +11,8 @@ const FrameVideo = props => {
   return (
     <View>
       {/* https://openbase.com/js/react-native-video-player/documentation#future-features */}
+      
+      {/* Fonctionne pas avec reactComponent 🤷🏽‍♂️ */}
       <VideoPlayer
         style={{width: SCREEN_WIDTH, height: 250}}
         loop={true}

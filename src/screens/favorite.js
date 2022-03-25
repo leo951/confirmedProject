@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Text, View, Image, Dimensions, FlatList} from 'react-native';
 import styled from 'styled-components';
+import Logo from '../components/logo';
 import ProductsGrid from '../components/products/productsGrid';
 import readFavorite from '../utils/Favorite/readFavorite';
 
@@ -12,16 +13,13 @@ const FavoriteScreen = () => {
 
   readFavorite()
     .then(res => {
-      console.log(res);
       setFavorite(res);
     })
     .catch(err => console.log('Je suis err = ', err));
 
-  // const getFavorite = await readFavorite()
-  // setFavorite(getFavorite);
-
   return (
     <ViewContainer>
+      <Logo />
       {favorite ? (
         <ProductsGrid
           width={SCREEN_WIDTH}

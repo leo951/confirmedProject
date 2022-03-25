@@ -33,31 +33,9 @@ const Shop = ({navigation}) => {
   }, []);
 
   return (
-    // <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    //   <FlatList
-    //     data={product}
-    //     keyExtractor={item => item.id}
-    //     renderItem={({item}) => (
-    //       <View>
-    //         <Button
-    //           onPress={() => navigation.navigate('Details', {id: item.id})}>
-    //           <Image
-    //             style={{height: 150, width: 280}}
-    //             source={{uri: `https:${item.media.imageUrl.split(':')[1]}`}}
-    //           />
-    //           <TextStyled>{item.title}</TextStyled>
-    //         </Button>
-    //       </View>
-    //     )}></FlatList>
-    // </View>
-
-    <View style={{width: SCREEN_WIDTH}}>
-      <ProductsGrid navigation={navigation} products={product}/>
-    </View>
+      <ProductsGrid width={SCREEN_WIDTH} navigation={navigation} products={product} />
   );
 };
-
-const TextStyled = styled.Text``;
 const Button = styled.TouchableOpacity``;
 
 Shop.propTypes = {};

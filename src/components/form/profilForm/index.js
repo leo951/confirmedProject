@@ -21,16 +21,16 @@ const ProfilForm = props => {
   const navigation = useNavigation();
 
   //Impossible d'utiliser cela car tourne en boucle ce qui ne laisse pas le temps a getUser de faire sa tache
-    // useFocusEffect(async () => {
-    //   getUser();
-    // });
+  // useFocusEffect(async () => {
+  //   getUser();
+  // });
 
   useEffect(() => {
     getUser();
   }, [username]);
 
   const disconnecting = async () => {
-    await AsyncStorage.removeItem('user')
+    await AsyncStorage.removeItem('user');
     navigation.navigate('Home');
   };
 
@@ -40,8 +40,7 @@ const ProfilForm = props => {
     const itemParsed = JSON.parse(item);
     setUser(itemParsed);
     setUsername(user.username);
-    return item
-
+    return item;
   };
 
   return (
@@ -51,6 +50,12 @@ const ProfilForm = props => {
       </View>
       <View>
         <ButtonDisconnecting validate={disconnecting} />
+      </View>
+      <View>
+        <ButtonViewFav
+          onPress={() => navigation.navigate('Favorite')}
+          title={'VOIR FAVORIS'}
+        />
       </View>
     </ViewContainer>
   );
@@ -67,6 +72,13 @@ const UsernameErrorTrue = styled.Text`
 `;
 const PasswordErrorTrue = styled.Text`
   color: red;
+`;
+
+const ButtonViewFav = styled.Button`
+  width: ${330}px;
+  font-size: ${15}px;
+  font-weight: 400;
+  text-align: flex-end;
 `;
 
 export default ProfilForm;

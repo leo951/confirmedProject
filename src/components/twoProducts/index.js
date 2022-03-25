@@ -18,7 +18,7 @@ const TwoProducts = props => {
   }, [props]);
 
   return (
-    <View style={{marginVertical: 50}}>
+    <ViewContainer>
       <ProductsGrid
         width={SCREEN_WIDTH - 50}
         marginHorizontal={10}
@@ -26,8 +26,12 @@ const TwoProducts = props => {
         horizontal={true}
         products={products}
       />
-    </View>
+    </ViewContainer>
   );
 };
+
+const ViewContainer = styled.View`
+  margin: ${50}px 0;
+`;
 
 export default TwoProducts;

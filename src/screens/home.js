@@ -3,6 +3,12 @@ import axios from 'axios';
 import {Text, View, ScrollView, FlatList} from 'react-native';
 import {ViewContainer} from '../components/styles/index';
 
+import getRandomInt from '../utils/Random/getRandomInt';
+import getRandomValue from '../utils/Random/getRandomValue';
+
+import images from '../libs/img';
+import videos from '../libs/video';
+
 import Auction from '../components/auction';
 import TwoProducts from '../components/twoProducts';
 import FrameVideo from '../components/frameVideo';
@@ -14,13 +20,6 @@ const Home = ({navigation}) => {
   const [product, setProduct] = useState([]);
   const [auction, setAuction] = useState([]);
   const [twoProducts, setTwoProducts] = useState([]);
-  const videos = [
-    'https://brand.assets.adidas.com/video/upload/q_auto,vc_auto,c_scale,w_0.5/video/upload/ss22-ozworld-educate-hp-teaser-carousel-dual-animated-2-d_lsjete.mp4',
-  ];
-  const images = [
-    'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/frFR/Images/Dotcom_BBall_MA_812x480px_tcm196-509729.jpg',
-    'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/frFR/Images/ss22-velosamba-sustain-hp-tc-d_tcm196-801372.jpg',
-  ];
 
   useEffect(() => {
     axios({
@@ -41,25 +40,6 @@ const Home = ({navigation}) => {
         console.error('Je suis error = ', error);
       });
   }, []);
-
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-
-  const getRandomValue = (listSend, listReceive, setListReceive, max) => {
-    if (max < listSend.length) {
-      for (let i = 1; i < max; i++) {
-        //Ajouter un element aleatoire de la liste d'envoie dans la liste de destination
-        //autant de fois que voulu via le paramettre max
-        var rand = getRandomInt(listSend.length);
-        var rValue = listSend[rand];
-        setListReceive([...listReceive, rValue]);
-
-        //Supprime l'element ajouter dans la liste de destination dans la liste d'envoie
-        listSend.splice(rand, 1);
-      }
-    }
-  };
 
   const addValueInTwoProducts = t => {
     getRandomValue(product, twoProducts, setTwoProducts, t);

@@ -7,6 +7,7 @@ import Home from '../../screens/home';
 import Shop from '../../screens/shop';
 import Login from '../../screens/login';
 import Profil from '../../screens/profil';
+import UseAuth from '../../components/useAuth';
 
 const Bottom = createBottomTabNavigator();
 
@@ -27,6 +28,7 @@ const HomeStack = () => {
   };
 
   return (
+    // <UseAuth>
     <Bottom.Navigator screenOptions={{headerShown: false}}>
       <Bottom.Screen name="Home" component={Home} />
       <Bottom.Screen name="Shop" component={Shop} />
@@ -36,6 +38,7 @@ const HomeStack = () => {
         <Bottom.Screen name="Login" component={Login} />
       )}
     </Bottom.Navigator>
+    // </UseAuth>
   );
 };
 

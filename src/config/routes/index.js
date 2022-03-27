@@ -1,15 +1,13 @@
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import LoginScreen from '../../screens/login';
-import HomeScreen from '../../screens/home';
-import ShopScreen from '../../screens/shop';
 import DetailsScreen from '../../screens/details';
 import HomeStack from '../routes/homeStack';
-import FavoriteScreen from '../../screens/favorite'
+import FavoriteScreen from '../../screens/favorite';
+import WinScreen from '../../screens/win';
+import LoseScreen from '../../screens/lose';
+import BuyScreen from '../../screens/buy';
 
 // const BottomTab = createBottomTabNavigator();
 
@@ -19,11 +17,11 @@ const Routes = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeStack" component={HomeStack} />
-      {/* <Stack.Screen name="Home" component={HomeScreen}/>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Shop" component={ShopScreen}/>*/}
-      <Stack.Screen name="Details" component={DetailsScreen}/> 
-      <Stack.Screen name="Favorite" component={FavoriteScreen}/> 
+      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="Win" component={WinScreen} />
+      <Stack.Screen name="Lose" component={LoseScreen} />
+      <Stack.Screen name="Buy" component={BuyScreen} />
+      <Stack.Screen name="Favorite" component={FavoriteScreen} />
     </Stack.Navigator>
   );
 };

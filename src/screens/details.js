@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {Text, Dimensions, Button} from 'react-native';
-import {Image} from '../components/styles';
+import {Image, TextShoe, TextColor, TextDetails} from '../components/styles';
 import styled from 'styled-components';
 
 import addToFavorite from '../utils/Favorite/addFavorite';
@@ -70,40 +70,14 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const TextShoe = styled.Text`
-  width: ${250}px;
-  font-size: ${40}px;
-  font-weight: bold;
-  text-align: center;
-  justify-content: center;
-  margin-top: ${10}px;
-`;
-const TextColor = styled.Text`
-  width: ${230}px;
-  font-size: ${15}px;
-  font-weight: 400;
-  text-align: center;
-  justify-content: center;
-  margin-top: ${10}px;
-  margin-bottom: ${50}px;
-`;
 const TextAuction = styled.Text`
   width: ${330}px;
   font-size: ${15}px;
   font-weight: 400;
   text-align: left;
   justify-content: flex-start;
-  margin: 5 0;
+  margin: 5px 0px;
   color: blue;
-`;
-const TextDetails = styled.Text`
-  width: ${330}px;
-  font-size: ${15}px;
-  font-weight: 400;
-  text-align: left;
-  justify-content: flex-start;
-  margin-top: ${10}px;
-  margin-bottom: ${20}px;
 `;
 const TextCarac = styled.Text`
   width: ${330}px;

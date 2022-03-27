@@ -4,12 +4,30 @@ import {View, Image, Text, FlatList, Dimensions} from 'react-native';
 import CountDownTimer from '../../countDownTimer';
 
 import removeFromFavorite from '../../../utils/Favorite/removeFavorite';
+import getRandomInt from '../../../utils/Random/getRandomInt';
 
 import styled from 'styled-components';
 
 const productsItem = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const counter = {hours: 1, minutes: 20, seconds: 40};
+
+  const winOrLose = () => {
+    const random = getRandomInt(2);
+    random != 1
+      ? props.navigation?.navigate('Lose', {
+          id: props.product.id,
+        })
+      : props.navigation?.navigate('Win', {
+          id: props.product.id,
+        });
+  };
+
+  const buy = () => {
+    props.navigation?.navigate('Buy', {
+      id: props.product.id,
+    })
+  }
 
   return (
     <ViewProductComponent>
@@ -39,9 +57,14 @@ const productsItem = props => {
           <TextPrice>{`${props.product?.retailPrice}, 00 €`}</TextPrice>
         </Button>
       </View>
-      <TextInput>
-        {props.viewTimer == true ? 'PARTICIPER' : 'ACHETER'}
-      </TextInput>
+      <Button
+        onPress={() => {
+          props.viewTimer == true ? winOrLose() : buy()
+        }}>
+        <TextInput>
+          {props.viewTimer == true ? 'PARTICIPER' : 'ACHETER'}
+        </TextInput>
+      </Button>
       {props.isFavorite == true && (
         <TextInput onPress={() => removeFromFavorite(props.product)}>
           {'SUPPRIMER DES FAVORIS'}
@@ -68,7 +91,8 @@ const ImageItem = styled.Image`
   height: ${250}px;
   width: ${props => props.width}px;
   margin: 0
-    ${props => props.marginHorizontal != undefined ? props.marginHorizontal : 0}px;
+    ${props =>
+      props.marginHorizontal != undefined ? props.marginHorizontal : 0}px;
 `;
 
 const TextName = styled.Text`

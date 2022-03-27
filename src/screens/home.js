@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import {Text, View, ScrollView, FlatList} from 'react-native';
-import {ViewContainer} from '../components/styles/index';
+import {ViewContainer, TextLoading} from '../components/styles/index';
 
 import getRandomInt from '../utils/Random/getRandomInt';
 import getRandomValue from '../utils/Random/getRandomValue';
+
+import getSneakers from '../utils/Request';
 
 import images from '../libs/img';
 import videos from '../libs/video';
@@ -20,26 +21,26 @@ const Home = ({navigation}) => {
   const [product, setProduct] = useState([]);
   const [auction, setAuction] = useState([]);
   const [twoProducts, setTwoProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: 'https://v1-sneakers.p.rapidapi.com/v1/sneakers',
-      params: {limit: '20', brand: 'Adidas'},
-      headers: {
-        'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
-        'x-rapidapi-key': '0b4a3b6537mshd039b5f654ce9b1p195a55jsn249c4d2939a2',
-        // 'X-RapidAPI-Host': 'v1-sneakers.p.rapidapi.com',
-        // 'X-RapidAPI-Key': '4fa17e2b51msha2b169814db974ep1b2769jsnc61411cb32f6',
-      },
-    })
-      .then(response => {
-        setProduct(response.data.results);
-      })
-      .catch(function (error) {
-        console.error('Je suis error = ', error);
-      });
+    setTimeout(() => {
+      getSneakers()
+        .then(response => {
+          console.log('Je suis response dans le then = ', response);
+          setProduct(response.data.results);
+          setIsLoading(false);
+        })
+        .catch(function (error) {
+          console.error('Je suis error = ', error);
+          setIsLoading(false);
+        });
+    }, 2000);
   }, []);
+
+  if (isLoading) {
+    return <TextLoading>Veuillez patienter</TextLoading>;
+  }
 
   const addValueInTwoProducts = t => {
     getRandomValue(product, twoProducts, setTwoProducts, t);
@@ -60,54 +61,58 @@ const Home = ({navigation}) => {
 
   return (
     <ViewContainer>
-      <ScrollView>
-        <View>
-          <Text>
-            {auction[0] != undefined && (
-              <Auction navigation={navigation} auction={auction[0]} />
-            )}
-          </Text>
-          <Text>
-            {auction[1] != undefined && (
-              <Auction navigation={navigation} auction={auction[1]} />
-            )}
-          </Text>
-          <Text>
-            {auction[2] != undefined && (
-              <Auction navigation={navigation} auction={auction[2]} />
-            )}
-          </Text>
-        </View>
-        <View>
+      {product[0] ? (
+        <ScrollView>
+          <View>
+            <Text>
+              {auction[0] != undefined && (
+                <Auction navigation={navigation} auction={auction[0]} />
+              )}
+            </Text>
+            <Text>
+              {auction[1] != undefined && (
+                <Auction navigation={navigation} auction={auction[1]} />
+              )}
+            </Text>
+            <Text>
+              {auction[2] != undefined && (
+                <Auction navigation={navigation} auction={auction[2]} />
+              )}
+            </Text>
+          </View>
+          <View>
+            <TwoProducts
+              navigation={navigation}
+              product1={product[0]}
+              product2={product[1]}
+            />
+          </View>
+
+          <FrameVideo videos={videos} />
+
           <TwoProducts
             navigation={navigation}
-            product1={product[0]}
-            product2={product[1]}
+            product1={product[2]}
+            product2={product[3]}
           />
-        </View>
 
-        <FrameVideo videos={videos} />
+          <FrameImage image={images[0]} />
 
-        <TwoProducts
-          navigation={navigation}
-          product1={product[2]}
-          product2={product[3]}
-        />
+          <TwoProducts
+            navigation={navigation}
+            product1={product[4]}
+            product2={product[5]}
+          />
 
-        <FrameImage image={images[0]} />
+          <FrameImage image={images[1]} />
 
-        <TwoProducts
-          navigation={navigation}
-          product1={product[4]}
-          product2={product[5]}
-        />
-
-        <FrameImage image={images[1]} />
-
-        <View>
-          <LastImages navigation={navigation} images={product} />
-        </View>
-      </ScrollView>
+          <View>
+            <LastImages navigation={navigation} images={product} />
+          </View>
+        </ScrollView>
+      ) : (
+        <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+      )}
     </ViewContainer>
   );
 };

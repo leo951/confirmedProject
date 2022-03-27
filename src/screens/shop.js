@@ -5,35 +5,42 @@ import {Text, View, FlatList, Image, Dimensions} from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import getSneakers from '../utils/Request';
+
 import ProductsGrid from '../components/products/productsGrid';
 import ProductsItem from '../components/products/productsItem';
+import {TextLoading} from '../components/styles';
 
 const Shop = ({navigation}) => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
+  const [isLoading, setIsLoading] = useState(true);
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: 'https://v1-sneakers.p.rapidapi.com/v1/sneakers',
-      params: {limit: '20', brand: 'Adidas'},
-      headers: {
-        'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
-        'x-rapidapi-key': '0b4a3b6537mshd039b5f654ce9b1p195a55jsn249c4d2939a2',
-        // 'X-RapidAPI-Host': 'v1-sneakers.p.rapidapi.com',
-        // 'X-RapidAPI-Key': '4fa17e2b51msha2b169814db974ep1b2769jsnc61411cb32f6'
-      },
-    })
+    getSneakers()
       .then(response => {
         setProduct(response.data.results);
+        setIsLoading(false);
       })
       .catch(function (error) {
         console.error('Je suis error = ', error);
+        setIsLoading(false);
       });
   }, []);
 
-  return (
-      <ProductsGrid width={SCREEN_WIDTH} navigation={navigation} products={product} />
+  if (isLoading) {
+    return <TextLoading>Veuillez patienter</TextLoading>;
+  }
+
+
+  return product[0] ? (
+    <ProductsGrid
+      width={SCREEN_WIDTH}
+      navigation={navigation}
+      products={product}
+    />
+  ) : (
+    <TextLoading>Pas de sneakers pour le moment</TextLoading>
   );
 };
 const Button = styled.TouchableOpacity``;

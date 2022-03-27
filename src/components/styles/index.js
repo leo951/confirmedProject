@@ -46,4 +46,9 @@ const TextDetails = styled.Text`
   margin-top: ${10}px;
   margin-bottom: ${20}px;
 `;
-export {ViewContainer, Image, TextShoe, TextColor, TextDetails, TextShoeColor};
+const TextLoading = styled.Text`
+text-align: center;
+margin-top: 50%;
+font-size: 30px;
+`
+export {ViewContainer, Image, TextShoe, TextColor, TextDetails, TextShoeColor, TextLoading};

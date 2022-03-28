@@ -8,6 +8,7 @@ const InputForm = props => {
       <Input
         secureTextEntry={props.typePassword}
         placeholder={props.placeholder}
+        autoComplete="off"
         onChangeText={isText => {
           props.setText(isText);
         }}
@@ -19,7 +20,9 @@ const InputForm = props => {
 const Input = styled.TextInput`
   height: 45px;
   width: 250px;
-  border: solid red 1px;
+  margin: 20px;
+  padding: 10px;
+  border: solid black 1px;
 `;
 
 export default InputForm;

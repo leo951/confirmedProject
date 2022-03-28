@@ -11,16 +11,25 @@ import ButtonForm from '../buttonForm/index';
 const LoginForm = props => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
-  const [errorUsername, setErrorUsername] = useState(false);
-  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorUsername, setErrorUsername] = useState('');
+  const [errorPassword, setErrorPassword] = useState('');
 
   const navigation = useNavigation();
 
-  const validate = () => {
-    username.length > 3 ? setErrorUsername(false) : setErrorUsername(true);
-    password.length > 7 ? setErrorPassword(false) : setErrorPassword(true);
-
+  const validate = async () => {
+    username.length > 3
+      ? await setErrorUsername(false)
+      : await setErrorUsername(true);
+    password.length > 7
+      ? await setErrorPassword(false)
+      : await setErrorPassword(true);
+    console.log(
+      `Je suis username.length == ${username.length} &&& Je suis password.length == ${password.length}`,
+    );
+    console.log(
+      `Je suis errorUsername == ${errorUsername} &&& Je suis errorPassword == ${errorPassword}`,
+    );
+    //Le problème viens du fait que ici les username && password ne s'actualise pas immediatement
     errorUsername == false && errorPassword == false
       ? getToken()
       : alert('Erreur avec vos identifiants');
@@ -48,6 +57,8 @@ const LoginForm = props => {
 
   return (
     <ViewContainer>
+      <TextTitle>Connexion</TextTitle>
+
       <View>
         <InputForm
           placeholder={'Email'}
@@ -85,6 +96,11 @@ const ViewContainer = styled.View`
   align-items: center;
 `;
 
+const TextTitle = styled.Text`
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+`;
 const UsernameErrorTrue = styled.Text`
   color: red;
 `;

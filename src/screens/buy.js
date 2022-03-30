@@ -3,6 +3,7 @@ import {Dimensions, Button, View, Text} from 'react-native';
 import {Image, TextShoe, TextColor, TextLoading} from '../components/styles';
 import {getSneaker} from '../utils/Request';
 import styled from 'styled-components';
+import Logo from '../components/logo';
 
 const BuyScreen = ({route}) => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
@@ -37,6 +38,7 @@ const BuyScreen = ({route}) => {
 
   return (
     <Container>
+      <Logo/>
       {sneaker[0].shoe ? (
         <>
           <Image

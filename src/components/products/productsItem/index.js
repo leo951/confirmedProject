@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, FlatList, Dimensions} from 'react-native';
+import {View, Dimensions} from 'react-native';
 
 import CountDownTimer from '../../countDownTimer';
 
@@ -15,7 +15,6 @@ const productsItem = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const counter = {hours: 1, minutes: 20, seconds: 40};
 
-  console.log("Je suis props.product.marginHorizontale = ",props.marginHorizontal)
 
   const winOrLose = () => {
     const random = getRandomInt(2);

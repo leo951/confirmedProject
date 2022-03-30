@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import Logo from '../components/logo';
 
 import {Button, Dimensions} from 'react-native';
 import {
@@ -57,6 +58,7 @@ const DetailsScreen = ({route}) => {
 
   return (
     <Container>
+      <Logo />
       {sneaker[0] ? (
         <>
           <Image
@@ -67,6 +69,7 @@ const DetailsScreen = ({route}) => {
           />
           <TextShoe>{sneaker[0]?.shoe}</TextShoe>
           <TextColor>{sneaker[0]?.colorway}</TextColor>
+          <TextColor>{sneaker[0]?.retailPrice},00 €</TextColor>
           {auction == true && (
             <TextAuction>
               Il vous reste moins de 20min pour participer au tirage au sort...
@@ -86,11 +89,13 @@ const DetailsScreen = ({route}) => {
             title={'AJOUTER AUX FAVORIES'}
           />
           <Add
-            title={"Acheter"}
+            title={"ACHETER"}
             onPress={async () => {
               await isBuy();
             }}></Add>
-          <TextCarac>CARACTERISTIQUES</TextCarac>
+            {/* Je voulais implementer une page caracteristique 
+            mais trop peu de data a montrer */}
+          {/* <TextCarac>CARACTERISTIQUES</TextCarac> */}
         </>
       ) : (
         <>

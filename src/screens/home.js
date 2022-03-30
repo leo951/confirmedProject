@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, ScrollView, Button} from 'react-native';
+import {Text, View, ScrollView, Button, FlatList} from 'react-native';
 import {ViewContainer, TextLoading} from '../components/styles/index';
+
+import Logo from '../components/logo';
 
 import getRandomInt from '../utils/Random/getRandomInt';
 import getRandomValue from '../utils/Random/getRandomValue';
@@ -64,6 +66,7 @@ const Home = ({navigation}) => {
 
   return (
     <ViewContainer>
+      <Logo/>
       {product[0] ? (
         <ScrollView>
           <View>

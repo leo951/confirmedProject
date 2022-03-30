@@ -35,7 +35,7 @@ const TextColor = styled.Text`
   text-align: center;
   justify-content: center;
   margin-top: ${10}px;
-  margin-bottom: ${50}px;
+  margin-bottom: ${30}px;
 `;
 const TextDetails = styled.Text`
   width: ${330}px;

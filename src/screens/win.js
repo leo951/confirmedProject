@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions, Button} from 'react-native';
+import Logo from '../components/logo';
 import {
   Image,
   TextShoe,
@@ -42,6 +43,7 @@ const WinScreen = ({route}) => {
 
   return (
     <Container>
+      <Logo />
       {sneaker[0].shoe ? (
         <>
           <Image

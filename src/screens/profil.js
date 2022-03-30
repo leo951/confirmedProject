@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import {View, Button} from 'react-native';
+import {View} from 'react-native';
 
 import {ViewContainer} from '../components/styles';
 
@@ -11,12 +11,10 @@ import ProfilForm from '../components/form/profilForm';
 function ProfilScreen({navigation}) {
   return (
     <>
+      <Logo />
       <ViewContainer>
         <View>
-          <Logo />
-        </View>
-        <View>
-          <ProfilForm/>
+          <ProfilForm />
         </View>
       </ViewContainer>
     </>

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Button, Dimensions} from 'react-native';
+import Logo from '../components/logo';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -38,14 +39,17 @@ const Shop = ({navigation}) => {
     return <TextLoading>Veuillez patienter</TextLoading>;
   }
 
-  return product ? (
-    <ProductsGrid
-      width={SCREEN_WIDTH / 2.5}
-      height={50}
-      navigation={navigation}
-      products={product}
-      shop={true}
-    />
+  return product[0] ? (
+    <>
+      <Logo />
+      <ProductsGrid
+        width={SCREEN_WIDTH / 2.5}
+        height={50}
+        navigation={navigation}
+        products={product}
+        shop={true}
+      />
+    </>
   ) : (
     <>
       <TextLoading>Pas de Sneakers pour le moment</TextLoading>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Dimensions} from 'react-native';
+import Logo from '../components/logo';
 import {
   Image,
   TextShoe,
@@ -43,6 +44,7 @@ const LoseScreen = ({route}) => {
 
   return (
     <Container>
+      <Logo />
       {sneaker[0] ? (
         <>
           <Image

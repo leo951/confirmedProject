@@ -5,7 +5,7 @@ import {ViewContainer, TextLoading} from '../components/styles/index';
 import getRandomInt from '../utils/Random/getRandomInt';
 import getRandomValue from '../utils/Random/getRandomValue';
 
-import getSneakers from '../utils/Request';
+import { getSneakers } from '../utils/Request';
 
 import images from '../libs/img';
 import videos from '../libs/video';

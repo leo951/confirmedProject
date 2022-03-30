@@ -12,6 +12,8 @@ const productsItem = props => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
   const counter = {hours: 1, minutes: 20, seconds: 40};
 
+  console.log("Je suis props.product.marginHorizontale = ",props.marginHorizontal)
+
   const winOrLose = () => {
     const random = getRandomInt(2);
     random != 1
@@ -26,49 +28,71 @@ const productsItem = props => {
   const buy = () => {
     props.navigation?.navigate('Buy', {
       id: props.product.id,
-    })
-  }
+    });
+  };
 
   return (
     <ViewProductComponent>
-      <View>
+      {props.shop != true ? (
+        <>
+          <View>
+            <Button
+              onPress={() => {
+                props.navigation?.navigate('Details', {
+                  id: props.product.id,
+                  auction: props.auction,
+                });
+              }}>
+              <ImageItem
+                width={props.width}
+                height={props.height}
+                marginHorizontal={props.marginHorizontal}
+                source={{
+                  uri: `https:${props.product?.media?.imageUrl.split(':')[1]}`,
+                }}
+              />
+            </Button>
+            {props.viewTimer == true && (
+              <ViewCounter width={SCREEN_WIDTH}>
+                <CountDownTimer counter={counter} />
+              </ViewCounter>
+            )}
+            <TextName>{props.product?.name}</TextName>
+            <TextShoe>{props.product?.shoe}</TextShoe>
+            <TextPrice>{`${props.product?.retailPrice}, 00 €`}</TextPrice>
+          </View>
+          <Button
+            onPress={() => {
+              props.viewTimer == true ? winOrLose() : buy();
+            }}>
+            <TextInput>
+              {props.viewTimer == true ? 'PARTICIPER' : 'ACHETER'}
+            </TextInput>
+          </Button>
+          {props.isFavorite == true && (
+            <TextInput onPress={() => removeFromFavorite(props.product)}>
+              {'SUPPRIMER DES FAVORIS'}
+            </TextInput>
+          )}
+        </>
+      ) : (
         <Button
           onPress={() => {
+            console.log("Je suis le productID transmis a details === ", props.product.id);
             props.navigation?.navigate('Details', {
-              id: props.product.id,
-              auction: props.auction,
+              id: props.product.id
             });
           }}>
-          <ImageItem
+
+          <ImageItemShop
             width={props.width}
+            height={100}
             marginHorizontal={props.marginHorizontal}
             source={{
               uri: `https:${props.product?.media?.imageUrl.split(':')[1]}`,
             }}
           />
-
-          {props.viewTimer == true && (
-            <ViewCounter width={SCREEN_WIDTH}>
-              <CountDownTimer counter={counter} />
-            </ViewCounter>
-          )}
-          <TextName>{props.product?.name}</TextName>
-          <TextShoe>{props.product?.shoe}</TextShoe>
-          <TextPrice>{`${props.product?.retailPrice}, 00 €`}</TextPrice>
         </Button>
-      </View>
-      <Button
-        onPress={() => {
-          props.viewTimer == true ? winOrLose() : buy()
-        }}>
-        <TextInput>
-          {props.viewTimer == true ? 'PARTICIPER' : 'ACHETER'}
-        </TextInput>
-      </Button>
-      {props.isFavorite == true && (
-        <TextInput onPress={() => removeFromFavorite(props.product)}>
-          {'SUPPRIMER DES FAVORIS'}
-        </TextInput>
       )}
     </ViewProductComponent>
   );
@@ -89,6 +113,13 @@ const ViewCounter = styled.View`
 
 const ImageItem = styled.Image`
   height: ${250}px;
+  width: ${props => props.width}px;
+  margin: 0
+    ${props =>
+      props.marginHorizontal != undefined ? props.marginHorizontal : 0}px;
+`;
+const ImageItemShop = styled.Image`
+  height: ${100}px;
   width: ${props => props.width}px;
   margin: 0
     ${props =>

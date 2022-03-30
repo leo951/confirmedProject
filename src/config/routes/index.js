@@ -9,13 +9,13 @@ import WinScreen from '../../screens/win';
 import LoseScreen from '../../screens/lose';
 import BuyScreen from '../../screens/buy';
 
-// const BottomTab = createBottomTabNavigator();
-
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    
+    <Stack.Navigator>
+      {/* screenOptions={{headerShown: false}} */}
       <Stack.Screen name="HomeStack" component={HomeStack} />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Win" component={WinScreen} />

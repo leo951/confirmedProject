@@ -27,4 +27,4 @@ const getSneaker = async id => {
   });
 };
 
-export default getSneakers; getSneaker;
+export {getSneakers, getSneaker};

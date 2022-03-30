@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {Image} from 'react-native';
+import styled from 'styled-components';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -30,16 +33,69 @@ const HomeStack = () => {
   return (
     // <UseAuth>
     <Bottom.Navigator screenOptions={{headerShown: false}}>
-      <Bottom.Screen name="Home" component={Home} />
-      <Bottom.Screen name="Shop" component={Shop} />
+      <Bottom.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: () => (
+            <Icon
+              source={{
+                uri: 'https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/000000/external-home-essentials-tanah-basah-basic-outline-tanah-basah-2.png',
+              }}
+            />
+          ),
+        }}
+      />
+      <Bottom.Screen
+        name="Shop"
+        component={Shop}
+        options={{
+          tabBarIcon: () => (
+            <Icon
+              source={{
+                uri: 'https://img.icons8.com/fluency-systems-regular/48/000000/mens-shoe.png',
+              }}
+            />
+          ),
+        }}
+      />
       {user != null ? (
-        <Bottom.Screen name="Profil" component={Profil} />
+        <Bottom.Screen
+          name="Profil"
+          component={Profil}
+          options={{
+            tabBarIcon: () => (
+              <Icon
+                source={{
+                  uri: 'https://img.icons8.com/material-outlined/24/000000/user--v1.png',
+                }}
+              />
+            ),
+          }}
+        />
       ) : (
-        <Bottom.Screen name="Login" component={Login} />
+        <Bottom.Screen
+          name="Login"
+          component={Login}
+          options={{
+            tabBarIcon: () => (
+              <Icon
+                source={{
+                  uri: 'https://img.icons8.com/material-outlined/24/000000/user--v1.png',
+                }}
+              />
+            ),
+          }}
+        />
       )}
     </Bottom.Navigator>
     // </UseAuth>
   );
 };
+
+const Icon = styled.Image`
+  width: ${25}px;
+  height: ${25}px;
+`;
 
 export default HomeStack;

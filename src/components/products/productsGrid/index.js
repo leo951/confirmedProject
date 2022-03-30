@@ -1,12 +1,33 @@
 import React from 'react';
 import {View, FlatList, Text} from 'react-native';
+import styled from 'styled-components';
+
 
 import ProductsItem from '../productsItem';
 
-const productsGrid = props => {
-
+const ProductsGrid = props => {
   return (
-    <View>
+    <ViewContainer>
+      {props.shop == true ? (
+        <FlatList
+          data={props.products}
+          numColumns={2}
+          renderItem={({item}) => (
+            <ProductsItem
+              shop={props.shop}
+              width={props.width}
+              height={props.height}
+              viewTimer={false}
+              marginHorizontal={20}
+              navigation={props.navigation}
+              product={item}
+              auction={false}
+              isFavorite={props.isFavorite}
+            />
+          )}
+          keyExtractor={item => item.id}
+        />
+      ) : (
         <FlatList
           horizontal={props.horizontal}
           data={props.products}
@@ -23,8 +44,15 @@ const productsGrid = props => {
           )}
           keyExtractor={item => item.name}
         />
-    </View>
+      )}
+    </ViewContainer>
   );
 };
 
-export default productsGrid;
+const ViewContainer = styled.View`
+  display: flex;
+  align-items: center;
+  background-color: white;
+`
+
+export default ProductsGrid;

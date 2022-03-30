@@ -5,7 +5,7 @@ import {Text, View, FlatList, Image, Dimensions} from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import getSneakers from '../utils/Request';
+import { getSneakers } from '../utils/Request';
 
 import ProductsGrid from '../components/products/productsGrid';
 import ProductsItem from '../components/products/productsItem';
@@ -32,12 +32,13 @@ const Shop = ({navigation}) => {
     return <TextLoading>Veuillez patienter</TextLoading>;
   }
 
-
-  return product[0] ? (
+  return product ? (
     <ProductsGrid
-      width={SCREEN_WIDTH}
+      width={SCREEN_WIDTH / 2.5}
+      height={50}
       navigation={navigation}
       products={product}
+      shop={true}
     />
   ) : (
     <TextLoading>Pas de sneakers pour le moment</TextLoading>

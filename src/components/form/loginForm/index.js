@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Text, View, TextInput, Button} from 'react-native';
+import {View} from 'react-native';
 
 import InputForm from '../inputForm/index';
 import ButtonForm from '../buttonForm/index';
@@ -11,8 +11,8 @@ import ButtonForm from '../buttonForm/index';
 const LoginForm = props => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorUsername, setErrorUsername] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
+  const [errorUsername, setErrorUsername] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
 
   const navigation = useNavigation();
 

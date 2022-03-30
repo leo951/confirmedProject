@@ -20,6 +20,7 @@ const TwoProducts = props => {
   return (
     <ViewContainer>
       <ProductsGrid
+        shop={false}
         width={SCREEN_WIDTH - 50}
         marginHorizontal={10}
         navigation={props.navigation}

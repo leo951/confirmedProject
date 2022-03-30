@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Text, Dimensions} from 'react-native';
 import {Image, TextShoe, TextColor, TextDetails, TextLoading} from '../components/styles';
-import getSneaker from '../utils/Request';
+import { getSneaker } from '../utils/Request';
 import styled from 'styled-components';
 
 import addToFavorite from '../utils/Favorite/addFavorite';
@@ -14,10 +14,13 @@ const DetailsScreen = ({route}) => {
     params: {id, auction},
   } = route;
 
+  console.log("Je suis l'id reçu dans details = ",id);
+
   useEffect(() => {
     setTimeout(() => {
       getSneaker(id)
         .then(response => {
+          console.log("Je suis results = ",response);
           setSneaker(response.data.results);
           setIsLoading(false);
         })

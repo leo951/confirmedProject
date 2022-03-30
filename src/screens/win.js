@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Dimensions, Button, Text} from 'react-native';
 import {Image, TextShoe, TextColor, TextShoeColor, TextLoading} from '../components/styles';
 import styled from 'styled-components';
-import getSneaker from '../utils/Request';
+import { getSneaker } from '../utils/Request';
 
 const WinScreen = ({route}) => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions, Button, View, Text} from 'react-native';
 import {Image, TextShoe, TextColor, TextLoading} from '../components/styles';
-import getSneaker from '../utils/Request/index';
+import { getSneaker } from '../utils/Request';
 import styled from 'styled-components';
 
 const BuyScreen = ({route}) => {

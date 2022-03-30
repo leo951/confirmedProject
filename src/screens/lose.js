@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Text, Dimensions} from 'react-native';
 import {Image, TextShoe, TextColor, TextShoeColor, TextLoading} from '../components/styles';
-import getSneaker from '../utils/Request';
+import { getSneaker } from '../utils/Request';
 import styled from 'styled-components';
 
 const LoseScreen = ({route}) => {

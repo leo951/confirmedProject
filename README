@@ -21,6 +21,10 @@ A Savoir :
     - Erreur lié au "FlatList" dans des "ScrollView" j'ai cherché comment resoudre le problème
      mais aucunes solutions trouvé pour mon cas 
 
+    - Volontairement laissé les console.log qui sont situés dans mes catch
+
+    -J'ai essayer d'ajouter un icon pour l'app sur le mobile via xcode mais pas reussi malgré un icon du format exigé
+
     - Dev sur un Iphone 13
 
 PS : Ce projet était super interessant et encore merci pour ton aide, 

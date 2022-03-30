@@ -26,8 +26,6 @@ const DetailsScreen = ({route}) => {
 
   const navigation = useNavigation();
 
-  console.log("Je suis l'id reçu dans details = ", id);
-
   useEffect(() => {
     setTimeout(() => {
       getShoe();

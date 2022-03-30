@@ -82,7 +82,6 @@ const productsItem = props => {
       ) : (
         <Button
           onPress={() => {
-            console.log("Je suis le productID transmis a details === ", props.product.id);
             props.navigation?.navigate('Details', {
               id: props.product.id
             });

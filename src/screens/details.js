@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+
 import {Button, Dimensions} from 'react-native';
 import {
   Image,
@@ -6,6 +8,7 @@ import {
   TextColor,
   TextDetails,
   TextLoading,
+  TextInput,
 } from '../components/styles';
 import {getSneaker} from '../utils/Request';
 import styled from 'styled-components';
@@ -20,6 +23,8 @@ const DetailsScreen = ({route}) => {
     params: {id, auction},
   } = route;
 
+  const navigation = useNavigation();
+
   console.log("Je suis l'id reçu dans details = ", id);
 
   useEffect(() => {
@@ -27,6 +32,12 @@ const DetailsScreen = ({route}) => {
       getShoe();
     }, 500);
   }, []);
+
+  const isBuy = () => {
+    navigation.navigate('Buy', {
+      id: sneaker[0].id,
+    });
+  };
 
   const getShoe = () => {
     getSneaker(id)
@@ -68,12 +79,17 @@ const DetailsScreen = ({route}) => {
             touche d'exigence.
           </TextDetails>
 
-          <AddFav
+          <Add
             onPress={async () => {
               await addToFavorite(sneaker[0]);
             }}
             title={'AJOUTER AUX FAVORIES'}
           />
+          <Add
+            title={"Acheter"}
+            onPress={async () => {
+              await isBuy();
+            }}></Add>
           <TextCarac>CARACTERISTIQUES</TextCarac>
         </>
       ) : (
@@ -89,6 +105,8 @@ const DetailsScreen = ({route}) => {
 const Container = styled.View`
   align-items: center;
 `;
+
+const ButtonBuy = styled.TouchableOpacity``;
 
 const TextAuction = styled.Text`
   width: ${330}px;
@@ -109,7 +127,7 @@ const TextCarac = styled.Text`
   margin-top: ${20}px;
 `;
 
-const AddFav = styled.Button`
+const Add = styled.Button`
   width: ${330}px;
   font-size: ${15}px;
   font-weight: 400;

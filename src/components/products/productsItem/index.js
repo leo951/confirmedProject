@@ -6,6 +6,9 @@ import CountDownTimer from '../../countDownTimer';
 import removeFromFavorite from '../../../utils/Favorite/removeFavorite';
 import getRandomInt from '../../../utils/Random/getRandomInt';
 
+//essayer de faire avec une fonction appeler de mes utils mais ne fonctionne pas
+// import buy from '../../../utils/buy';
+
 import styled from 'styled-components';
 
 const productsItem = props => {
@@ -24,6 +27,8 @@ const productsItem = props => {
           id: props.product.id,
         });
   };
+
+
 
   const buy = () => {
     props.navigation?.navigate('Buy', {

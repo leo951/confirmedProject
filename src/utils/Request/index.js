@@ -27,4 +27,14 @@ const getSneaker = async id => {
   });
 };
 
-export {getSneakers, getSneaker};
+const setToken = async (username, password) => {
+  console.log("Je rentre bien dans mon setToken");
+  console.log("Je suis username dans setToken = ",username);
+  console.log("Je suis password dans setToken = ",password);
+  return await axios.post(`https://easy-login-api.herokuapp.com/users/login`, {
+    username,
+    password,
+  });
+};
+
+export {getSneakers, getSneaker, setToken};

@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, Button, Text} from 'react-native';
-import {Image, TextShoe, TextColor, TextShoeColor, TextLoading} from '../components/styles';
+import {Dimensions, Button} from 'react-native';
+import {
+  Image,
+  TextShoe,
+  TextColor,
+  TextShoeColor,
+  TextLoading,
+} from '../components/styles';
 import styled from 'styled-components';
-import { getSneaker } from '../utils/Request';
+import {getSneaker} from '../utils/Request';
 
 const WinScreen = ({route}) => {
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
@@ -14,17 +20,21 @@ const WinScreen = ({route}) => {
 
   useEffect(() => {
     setTimeout(() => {
-      getSneaker(id)
-        .then(response => {
-          setSneaker(response.data.results);
-          setIsLoading(false)
-        })
-        .catch(error => {
-          console.log('Je suis error dans le getById = ', error);
-          setIsLoading(false)
-        });
+      getShoe();
     }, 500);
   }, []);
+
+  const getShoe = () => {
+    getSneaker(id)
+      .then(response => {
+        setSneaker(response.data.results);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.log('Je suis error dans le getById = ', error);
+        setIsLoading(false);
+      });
+  };
 
   if (isLoading) {
     return <TextLoading>Veuillez patienter</TextLoading>;
@@ -46,7 +56,8 @@ const WinScreen = ({route}) => {
         </>
       ) : (
         <>
-          <TextLoading>Pas de sneakers pour le moment</TextLoading>
+          <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+          <Button onPress={getShoe()} title="recharger" />
         </>
       )}
     </Container>

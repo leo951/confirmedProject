@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setToken} from '../../../utils/Request';
 import {View} from 'react-native';
 
 import InputForm from '../inputForm/index';
@@ -23,12 +23,6 @@ const LoginForm = props => {
     password.length > 7
       ? await setErrorPassword(false)
       : await setErrorPassword(true);
-    console.log(
-      `Je suis username.length == ${username.length} &&& Je suis password.length == ${password.length}`,
-    );
-    console.log(
-      `Je suis errorUsername == ${errorUsername} &&& Je suis errorPassword == ${errorPassword}`,
-    );
     //Le problème viens du fait que ici les username && password ne s'actualise pas immediatement
     errorUsername == false && errorPassword == false
       ? getToken()
@@ -36,12 +30,8 @@ const LoginForm = props => {
   };
 
   const getToken = () => {
-    axios
-      .post(`https://easy-login-api.herokuapp.com/users/login`, {
-        username,
-        password,
-      })
-      .then(async function (response) {
+    setToken(username, password)
+      .then( async (response)  => {
         await AsyncStorage.setItem(
           'token',
           `${response.headers['x-access-token']}`,
@@ -50,7 +40,7 @@ const LoginForm = props => {
         await AsyncStorage.setItem('user', JSON.stringify(user));
         navigation.navigate('Home');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log('Je suis erreur lors de la requete = ', error);
       });
   };
@@ -64,7 +54,6 @@ const LoginForm = props => {
           placeholder={'Email'}
           typePassword={false}
           setText={setUsername}
-          // text={username}
         />
         {errorUsername == true && (
           <UsernameErrorTrue>
@@ -75,7 +64,6 @@ const LoginForm = props => {
           placeholder={'Mot de passe'}
           typePassword={true}
           setText={setPassword}
-          // text={password}
         />
         {errorPassword == true && (
           <PasswordErrorTrue>

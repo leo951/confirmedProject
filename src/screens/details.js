@@ -1,7 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Text, Dimensions} from 'react-native';
-import {Image, TextShoe, TextColor, TextDetails, TextLoading} from '../components/styles';
-import { getSneaker } from '../utils/Request';
+import {Button, Dimensions} from 'react-native';
+import {
+  Image,
+  TextShoe,
+  TextColor,
+  TextDetails,
+  TextLoading,
+} from '../components/styles';
+import {getSneaker} from '../utils/Request';
 import styled from 'styled-components';
 
 import addToFavorite from '../utils/Favorite/addFavorite';
@@ -14,22 +20,25 @@ const DetailsScreen = ({route}) => {
     params: {id, auction},
   } = route;
 
-  console.log("Je suis l'id reçu dans details = ",id);
+  console.log("Je suis l'id reçu dans details = ", id);
 
   useEffect(() => {
     setTimeout(() => {
-      getSneaker(id)
-        .then(response => {
-          console.log("Je suis results = ",response);
-          setSneaker(response.data.results);
-          setIsLoading(false);
-        })
-        .catch(error => {
-          console.log('Je suis error dans le getById = ', error);
-          setIsLoading(false);
-        });
+      getShoe();
     }, 500);
   }, []);
+
+  const getShoe = () => {
+    getSneaker(id)
+      .then(response => {
+        setSneaker(response.data.results);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.log('Je suis error dans le getById = ', error);
+        setIsLoading(false);
+      });
+  };
 
   if (isLoading) {
     return <TextLoading>Veuillez patienter</TextLoading>;
@@ -68,7 +77,10 @@ const DetailsScreen = ({route}) => {
           <TextCarac>CARACTERISTIQUES</TextCarac>
         </>
       ) : (
-        <TextLoading>Pas de sneakers pour le moment</TextLoading>
+        <>
+          <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+          <Button onPress={getShoe()} title="recharger" />
+        </>
       )}
     </Container>
   );

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Text, View, FlatList, Image, Dimensions} from 'react-native';
+import {Button, Dimensions} from 'react-native';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { getSneakers } from '../utils/Request';
+import {getSneakers} from '../utils/Request';
 
 import ProductsGrid from '../components/products/productsGrid';
 import ProductsItem from '../components/products/productsItem';
@@ -17,6 +17,12 @@ const Shop = ({navigation}) => {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
+    setTimeout(() => {
+      getShoes();
+    }, 500);
+  }, []);
+
+  const getShoes = () => {
     getSneakers()
       .then(response => {
         setProduct(response.data.results);
@@ -26,7 +32,7 @@ const Shop = ({navigation}) => {
         console.error('Je suis error = ', error);
         setIsLoading(false);
       });
-  }, []);
+  };
 
   if (isLoading) {
     return <TextLoading>Veuillez patienter</TextLoading>;
@@ -41,10 +47,12 @@ const Shop = ({navigation}) => {
       shop={true}
     />
   ) : (
-    <TextLoading>Pas de sneakers pour le moment</TextLoading>
+    <>
+      <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+      <Button onPress={getShoes()} title="recharger" />
+    </>
   );
 };
-const Button = styled.TouchableOpacity``;
 
 Shop.propTypes = {};
 

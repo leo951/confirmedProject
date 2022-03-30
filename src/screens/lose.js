@@ -1,7 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Text, Dimensions} from 'react-native';
-import {Image, TextShoe, TextColor, TextShoeColor, TextLoading} from '../components/styles';
-import { getSneaker } from '../utils/Request';
+import {Button, Dimensions} from 'react-native';
+import {
+  Image,
+  TextShoe,
+  TextColor,
+  TextShoeColor,
+  TextLoading,
+} from '../components/styles';
+import {getSneaker} from '../utils/Request';
 import styled from 'styled-components';
 
 const LoseScreen = ({route}) => {
@@ -15,17 +21,21 @@ const LoseScreen = ({route}) => {
 
   useEffect(() => {
     setTimeout(() => {
-      getSneaker(id)
-        .then(response => {
-          setSneaker(response.data.results);
-          setIsLoading(false);
-        })
-        .catch(error => {
-          console.log('Je suis error dans le getById = ', error);
-          setIsLoading(false);
-        });
+      getShoe();
     }, 500);
   }, []);
+
+  const getShoe = () => {
+    getSneaker(id)
+      .then(response => {
+        setSneaker(response.data.results);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.log('Je suis error dans le getById = ', error);
+        setIsLoading(false);
+      });
+  };
 
   if (isLoading) {
     return <TextLoading>Veuillez patienter</TextLoading>;
@@ -46,7 +56,10 @@ const LoseScreen = ({route}) => {
           <TextColor>{sneaker[0]?.colorway}</TextColor>
         </>
       ) : (
-        <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+        <>
+          <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+          <Button onPress={getShoe()} title="recharger" />
+        </>
       )}
     </Container>
   );

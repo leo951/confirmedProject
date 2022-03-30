@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, ScrollView, FlatList} from 'react-native';
+import {Text, View, ScrollView, Button} from 'react-native';
 import {ViewContainer, TextLoading} from '../components/styles/index';
 
 import getRandomInt from '../utils/Random/getRandomInt';
 import getRandomValue from '../utils/Random/getRandomValue';
 
-import { getSneakers } from '../utils/Request';
+import {getSneakers} from '../utils/Request';
 
 import images from '../libs/img';
 import videos from '../libs/video';
@@ -25,18 +25,21 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     setTimeout(() => {
-      getSneakers()
-        .then(response => {
-          console.log('Je suis response dans le then = ', response);
-          setProduct(response.data.results);
-          setIsLoading(false);
-        })
-        .catch(function (error) {
-          console.error('Je suis error = ', error);
-          setIsLoading(false);
-        });
-    }, 2000);
+      getShoes();
+    }, 1000);
   }, []);
+
+  const getShoes = () => {
+    getSneakers()
+      .then(response => {
+        setProduct(response.data.results);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+      });
+  };
 
   if (isLoading) {
     return <TextLoading>Veuillez patienter</TextLoading>;
@@ -111,7 +114,10 @@ const Home = ({navigation}) => {
           </View>
         </ScrollView>
       ) : (
-        <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+        <>
+          <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+          <Button onPress={getShoes()} title="recharger"/>
+        </>
       )}
     </ViewContainer>
   );

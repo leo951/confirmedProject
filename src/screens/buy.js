@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions, Button, View, Text} from 'react-native';
 import {Image, TextShoe, TextColor, TextLoading} from '../components/styles';
-import { getSneaker } from '../utils/Request';
+import {getSneaker} from '../utils/Request';
 import styled from 'styled-components';
 
 const BuyScreen = ({route}) => {
@@ -15,17 +15,21 @@ const BuyScreen = ({route}) => {
 
   useEffect(() => {
     setTimeout(() => {
-      getSneaker(id)
-        .then(response => {
-          setSneaker(response.data.results);
-          setIsLoading(false);
-        })
-        .catch(error => {
-          console.log('Je suis error dans le getById = ', error);
-          setIsLoading(false);
-        });
+      getShoe();
     }, 500);
   }, []);
+
+  const getShoe = () => {
+    getSneaker(id)
+      .then(response => {
+        setSneaker(response.data.results);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.log('Je suis error dans le getById = ', error);
+        setIsLoading(false);
+      });
+  };
 
   if (isLoading) {
     return <TextLoading>Veuillez patienter</TextLoading>;
@@ -48,6 +52,7 @@ const BuyScreen = ({route}) => {
       ) : (
         <>
           <TextLoading>Pas de Sneakers pour le moment</TextLoading>
+          <Button onPress={getShoe()} title="recharger" />
         </>
       )}
     </Container>

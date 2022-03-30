@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, FlatList, Text} from 'react-native';
+import { FlatList} from 'react-native';
 import styled from 'styled-components';
-
 
 import ProductsItem from '../productsItem';
 
@@ -9,7 +8,7 @@ const ProductsGrid = props => {
   return (
     <ViewContainer>
       {props.shop == true ? (
-        <FlatList
+        <FlatListShop
           data={props.products}
           numColumns={2}
           renderItem={({item}) => (
@@ -52,7 +51,9 @@ const ProductsGrid = props => {
 const ViewContainer = styled.View`
   display: flex;
   align-items: center;
-  background-color: white;
 `
 
+const FlatListShop = styled.FlatList`
+  background-color: white;
+`
 export default ProductsGrid;

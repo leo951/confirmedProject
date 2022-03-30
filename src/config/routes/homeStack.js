@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Image} from 'react-native';
 import styled from 'styled-components';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';

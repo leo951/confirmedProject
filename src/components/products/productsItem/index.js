@@ -106,7 +106,7 @@ const productsItem = props => {
 const Button = styled.TouchableOpacity``;
 
 const ViewProductComponent = styled.View`
-  margin: 20px 0;
+  margin: 0 0 20px 0;
 `;
 const ViewCounter = styled.View`
   align-items: center;
